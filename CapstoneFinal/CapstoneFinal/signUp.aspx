@@ -22,7 +22,7 @@
         <div>
             <!-- NAVBAR -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bgark">
-    <a class="navbar-brand" href="index.aspx">CoffeeMate</a>
+    <a class="navbar-brand" href="index.aspx"><img src="./images/coffee.png" class="brand-img"/>CoffeeMate</a>
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -45,10 +45,10 @@
 <div class="container text-center pt-5">
    <div>
 		<h1>Create an Account</h1>
-       User Name: <asp:TextBox ID="usernameTextBox" runat="server"></asp:TextBox><br /><br />
+            User Name: <asp:TextBox ID="usernameTextBox" runat="server"></asp:TextBox><br /><br />
 			Password:  <asp:TextBox ID="passwordTextBox" runat="server" TextMode="Password"></asp:TextBox><br /><br />
 			Confirm Password: <asp:TextBox ID="confirmPasswordTextBox" runat="server" TextMode="Password"></asp:TextBox><br /><br />
-			Email:  <asp:TextBox ID="answerTextBox" runat="server"></asp:TextBox><br /><br />
+			Email:  <asp:TextBox ID="emailTextBox" runat="server"></asp:TextBox><br /><br />
             <asp:Button ID="submitButton" runat="server" Text="Submit" OnClick="submitButton_Click" />
 			<br />
 	</div>

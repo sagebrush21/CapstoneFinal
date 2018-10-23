@@ -23,7 +23,7 @@ namespace CapstoneFinal
             string username = usernameTextBox.Text;
             string password = passwordTextBox.Text;
 
-            string sql = "SELECT* FROM  newloginTable WHERE username=@username AND [password]=@password";
+            string sql = "SELECT* FROM  Users WHERE username=@username AND [password]=@password";
 
             // String to store sql connection
             SqlConnection con = new SqlConnection();

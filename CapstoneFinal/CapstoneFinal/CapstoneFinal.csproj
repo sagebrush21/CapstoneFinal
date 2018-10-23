@@ -70,6 +70,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="css\webCSS.css" />
+    <Content Include="images\coffee.png" />
     <Content Include="images\doodles.png" />
     <Content Include="images\halftone.png" />
     <Content Include="images\hip-square.png" />

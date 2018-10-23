@@ -49,13 +49,13 @@ namespace CapstoneFinal {
         protected global::System.Web.UI.WebControls.TextBox confirmPasswordTextBox;
         
         /// <summary>
-        /// answerTextBox control.
+        /// emailTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox answerTextBox;
+        protected global::System.Web.UI.WebControls.TextBox emailTextBox;
         
         /// <summary>
         /// submitButton control.

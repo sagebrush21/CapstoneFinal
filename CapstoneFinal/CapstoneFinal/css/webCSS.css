@@ -9,6 +9,11 @@ body {
     background-image: url(../images/wov.png);
 }
 
+.brand-image img{
+    width: 30px !important;
+    height: 30px !important;
+}
+
 .footer {
     position: absolute;
     bottom: 0;
