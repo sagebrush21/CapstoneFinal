@@ -22,7 +22,7 @@
         <div>
             <!-- NAVBAR -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bgark">
-    <a class="navbar-brand" href="index.html">CoffeeMate</a>
+    <a class="navbar-brand" href="index.aspx">CoffeeMate</a>
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -36,7 +36,7 @@
             <a class="nav-item nav-link ml-2" href="#">Borrow</a>
             <a class="nav-item nav-link ml-2" href="lendForm.aspx">Lend</a>
             <a class="nav-item nav-link ml-2" href="#">Contact</a>--%>
-            <a class="nav-item nav-link ml-2 active" href="login.aspx">Login <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link ml-2 active" href="index.aspx">Login <span class="sr-only">(current)</span></a>
         </div>
     </div>
 </nav>
