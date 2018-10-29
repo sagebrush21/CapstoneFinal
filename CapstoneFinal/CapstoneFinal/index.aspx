@@ -16,13 +16,60 @@
     <style type="text/css">
 	
     </style>
+
+    <script type="text/javascript"> 
+        function LogOn(userId, pass) {
+            //the url of the webservice we will be talking to
+            var webMethod = "MentoreeService.asmx/LogOn";
+
+            var parameters = "{\"uid\":\"" + encodeURI(userId) + "\",\"pass\":\"" + encodeURI(pass) + "\"}";
+
+            //jQuery ajax method
+            $.ajax({
+                //post is more secure than get, and allows
+                //us to send big data if we want.  really just
+                //depends on the way the service you're talking to is set up, though
+                type: "POST",
+                //the url is set to the string we created above
+                url: webMethod,
+                //same with the data
+                data: parameters,
+                //these next two key/value pairs say we intend to talk in JSON format
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                //jQuery sends the data and asynchronously waits for a response.  when it
+                //gets a response, it calls the function mapped to the success key here
+                success: function (msg) {
+                    //the server response is in the msg object passed in to the function here
+
+                    if (msg.d) {
+                        //server replied true, so show the
+                        //chat screen and start checking messages
+                        showPanel('chatPanel');
+                        CheckMessages();
+                    }
+                    else {
+                        //server replied false, so let the user know
+                        //the logon failed
+                        alert("logon failed");
+                    }
+                },
+                error: function (e) {
+                    //if something goes wrong in the mechanics of delivering the
+                    //message to the server or the server processing that message,
+                    alert("boo...");
+                }
+            });
+        }
+
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
             <!-- NAVBAR -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bgark">
-    <a class="navbar-brand" href="index.aspx"><img class="brand-image" src="./images/coffee.png" height="30" width="30"/>CoffeeMate</a>
+<%--<nav class="navbar fixed-top navbar-expand-lg navbar-dark bgark">
+    <a class="navbar-brand" href="index.aspx"><img class="brand-image" src="./images/manatee-transparent-background.png" height="30" width="30"/>CoffeeMate</a>
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -32,29 +79,26 @@
         <div class="navbar-nav mr-auto navbar-left font-sz-5">
         </div>
         <div class="navbar-nav ml-auto navbar-right font-sz-5">
-            <%--<a class="nav-item nav-link" href="index.aspx"> Home </a>
-            <a class="nav-item nav-link ml-2" href="#">Borrow</a>
-            <a class="nav-item nav-link ml-2" href="lendForm.aspx">Lend</a>
-            <a class="nav-item nav-link ml-2" href="#">Contact</a>--%>
             <a class="nav-item nav-link ml-2 active" href="index.aspx">Login <span class="sr-only">(current)</span></a>
         </div>
     </div>
-</nav>
+</nav>--%>
 <!-- BANNER -->    
-<!-- MAIN BODY INFO -->
-<div class="container text-center pt-5">
-    <h1>Login to Your Account</h1>
+<!-- MAIN BODY INFO --> 
+
+<div class="container text-center pt-5 form-signin">
+        <img class="mb-4" src="./images/manatee-transparent-background.png" alt="Mentoree" width="50%">
+    <h1>Please sign in</h1>
 		<br />
-			User Name: <asp:TextBox ID="usernameTextBox" runat="server"></asp:TextBox>
+			<asp:TextBox ID="usernameTextBox" runat="server" CssClass="form-control">Email address</asp:TextBox>
             <br/><br/><br />
-			Password:  <asp:TextBox ID="passwordTextBox" runat="server" TextMode="Password"></asp:TextBox><br/><br/>
-            <asp:Button ID="loginButton" runat="server" Text="Login" OnClick="loginButton_Click" />
+			<asp:TextBox ID="passwordTextBox" runat="server" TextMode="Password" CssClass="form-control">Password</asp:TextBox><br/><br/>
+            <asp:Button ID="loginButton" runat="server" Text="Sign In" OnClick="loginButton_Click" CssClass="btn btn-lg btn-primary btn-block" />
 			<br/>
             <br />
 		<a href="signUp.aspx"><h4>New User? Click here</h4></a><br />
         <asp:Label ID="errorLabel" runat="server" Visible="False" ForeColor="Red"></asp:Label>
 </div> 
-    
 <!-- FOOTER -->
 <footer class="footer bg-dark">
     <div class="container  w-100 h-100">

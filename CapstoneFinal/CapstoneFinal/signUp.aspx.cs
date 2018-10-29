@@ -31,7 +31,7 @@ namespace CapstoneFinal
                 a = ConfigurationManager.ConnectionStrings["myDB"].ToString();
                 SqlConnection con = new SqlConnection(a);
                 con.Open();
-
+                
                 SqlCommand cmd = new SqlCommand("INSERT into Users" + "(username,password,email) values(@username, @password, @email)", con);
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@password", password);
