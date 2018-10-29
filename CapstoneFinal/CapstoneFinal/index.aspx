@@ -43,10 +43,7 @@
                     //the server response is in the msg object passed in to the function here
 
                     if (msg.d) {
-                        //server replied true, so show the
-                        //chat screen and start checking messages
-                        showPanel('chatPanel');
-                        CheckMessages();
+                        window.location.href = "";
                     }
                     else {
                         //server replied false, so let the user know
@@ -93,7 +90,7 @@
 			<asp:TextBox ID="usernameTextBox" runat="server" CssClass="form-control">Email address</asp:TextBox>
             <br/><br/><br />
 			<asp:TextBox ID="passwordTextBox" runat="server" TextMode="Password" CssClass="form-control">Password</asp:TextBox><br/><br/>
-            <asp:Button ID="loginButton" runat="server" Text="Sign In" OnClick="loginButton_Click" CssClass="btn btn-lg btn-primary btn-block" />
+            <asp:Button ID="loginButton" runat="server" Text="Sign In" OnClick="LogOn($('#usernameTextBox').val(), $('#passwordTextBox').val()); return false;" CssClass="btn btn-lg btn-primary btn-block" />
 			<br/>
             <br />
 		<a href="signUp.aspx"><h4>New User? Click here</h4></a><br />
