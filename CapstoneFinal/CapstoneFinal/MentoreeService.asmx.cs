@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Data;
 
 using System.Configuration;
+using System.Web.Script.Serialization;
 
 namespace CapstoneFinal
 {
@@ -21,7 +22,6 @@ namespace CapstoneFinal
     [System.Web.Script.Services.ScriptService]
     public class MentoreeService : System.Web.Services.WebService
     {
-
         [WebMethod(EnableSession = true)]
         public bool LogOn(string uid, string pass)
         {
@@ -35,9 +35,9 @@ namespace CapstoneFinal
             bool success = false;
 
             //our connection string comes from our web.config file like we talked about earlier
-            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+            string sqlConnectString = ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
             //here's our query.  A basic select with nothing fancy.  Note the parameters that begin with @
-            string sqlSelect = "SELECT id FROM useraccount WHERE username=@idValue and password=@passValue";
+            string sqlSelect = "SELECT id FROM loginTable WHERE username=@idValue and password=@passValue";
 
             //set up our connection object to be ready to use our connection string
             SqlConnection sqlConnection = new SqlConnection(sqlConnectString);
@@ -88,13 +88,13 @@ namespace CapstoneFinal
             //again, this is either gonna work or it won't.  We return this flag to let them
             //know if account creation was successful
             bool success = false;
-            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+            string sqlConnectString = ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
             //the only thing fancy about this query is SELECT SCOPE_IDENTITY() at the end.  All that
             //does is tell sql server to return the primary key of the last inserted row.
             //we want this, because if the account gets created we will automatically
             //log them on by storing their id in the session.  That's just a design choice.  You could
             //decide that after they create an account they still have to log on seperately.  Whatevs.
-            string sqlSelect = "insert into useraccount (username, password, firstname, lastname) " +
+            string sqlSelect = "insert into loginTable (username, password, firstname, lastname) " +
                 "values(@idValue, @passValue, @fnameValue, @lnameValue)SELECT SCOPE_IDENTITY();";
 
             SqlConnection sqlConnection = new SqlConnection(sqlConnectString);
@@ -130,5 +130,50 @@ namespace CapstoneFinal
             return success;
         }
 
+        [WebMethod(EnableSession = true)]
+        public string LoadProfile()
+        {
+   
+            //the only thing fancy about this query is SELECT SCOPE_IDENTITY() at the end.  All that
+            //does is tell sql server to return the primary key of the last inserted row.
+            //we want this, because if the account gets created we will automatically
+            //log them on by storing their id in the session.  That's just a design choice.  You could
+            //decide that after they create an account they still have to log on seperately.  Whatevs.
+
+            string searchID = Session["id"].ToString();
+
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "Select * from loginTable where productID = '" + searchID + "'";
+            cmd.Connection = con;
+            SqlDataReader rd = cmd.ExecuteReader();
+
+
+
+            if (rd.HasRows)
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string retJSON = js.Serialize(rd);
+                return retJSON;
+                
+                //while (rd.Read())
+                //{
+                //    //object binaryData = rd[0];
+                //    //byte[] bytes = (byte[])binaryData;
+                //    //string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
+
+
+                //    // mainImage.ImageUrl = "data:image/jpg;base64," + base64String;
+
+                //}
+            }
+            else
+            {
+                return null;
+            }
+
+        }
     }
 }

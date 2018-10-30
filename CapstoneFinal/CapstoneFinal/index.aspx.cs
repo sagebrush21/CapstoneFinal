@@ -20,38 +20,38 @@ namespace CapstoneFinal
 
         protected void loginButton_Click(object sender, EventArgs e)
         {
-            string username = usernameTextBox.Text;
-            string password = passwordTextBox.Text;
+            //string username = usernameTextBox.Text;
+            //string password = passwordTextBox.Text;
 
-            string sql = "SELECT* FROM  Users WHERE username=@username AND [password]=@password";
+            //string sql = "SELECT* FROM  Users WHERE username=@username AND [password]=@password";
 
-            // String to store sql connection
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
+            //// String to store sql connection
+            //SqlConnection con = new SqlConnection();
+            //con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
 
 
-            SqlCommand sqlCommand = new SqlCommand(sql, con); ;
-            con.Open();
-            cmd.Parameters.AddWithValue("@username", username);
-            cmd.Parameters.AddWithValue("@password", password);
-            cmd.Connection = con;
-            cmd.CommandText = sql;
-            SqlDataReader rd = cmd.ExecuteReader();
+            //SqlCommand sqlCommand = new SqlCommand(sql, con); ;
+            //con.Open();
+            //cmd.Parameters.AddWithValue("@username", username);
+            //cmd.Parameters.AddWithValue("@password", password);
+            //cmd.Connection = con;
+            //cmd.CommandText = sql;
+            //SqlDataReader rd = cmd.ExecuteReader();
 
-            if (rd.HasRows)
-            {
-                while (rd.Read())
-                {
-                    Response.Redirect("index.aspx");
-                }
-            }
-            else
-            {
-                passwordTextBox.Text = "";
-                errorLabel.Visible = true;
-                errorLabel.Text = "Username or password is incorrect!";
+            //if (rd.HasRows)
+            //{
+            //    while (rd.Read())
+            //    {
+            //        Response.Redirect("index.aspx");
+            //    }
+            //}
+            //else
+            //{
+            //    passwordTextBox.Text = "";
+            //    errorLabel.Visible = true;
+            //    errorLabel.Text = "Username or password is incorrect!";
 
-            }
+            //}
         }
     }
 }

@@ -79,6 +79,7 @@
             <a class="nav-item nav-link ml-2 active" href="index.aspx">Login <span class="sr-only">(current)</span></a>
         </div>
     </div>
+    
 </nav>--%>
 <!-- BANNER -->    
 <!-- MAIN BODY INFO --> 
@@ -88,16 +89,16 @@
     <h1>Please sign in</h1>
 		<br />
 			<asp:TextBox ID="usernameTextBox" runat="server" CssClass="form-control">Email address</asp:TextBox>
-            <br/><br/><br />
-			<asp:TextBox ID="passwordTextBox" runat="server" TextMode="Password" CssClass="form-control">Password</asp:TextBox><br/><br/>
-            <asp:Button ID="loginButton" runat="server" Text="Sign In" OnClick="LogOn($('#usernameTextBox').val(), $('#passwordTextBox').val()); return false;" CssClass="btn btn-lg btn-primary btn-block" />
+            <br />
+			<asp:TextBox ID="passwordTextBox" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox><br />
+            <asp:Button ID="loginButton" runat="server" Text="Sign In" OnClick="loginButton_Click" OnClientClick="LogOn($('#usernameTextBox').val(), $('#passwordTextBox').val()); return false;" CssClass="btn btn-lg btn-primary btn-block" />
 			<br/>
             <br />
 		<a href="signUp.aspx"><h4>New User? Click here</h4></a><br />
         <asp:Label ID="errorLabel" runat="server" Visible="False" ForeColor="Red"></asp:Label>
 </div> 
 <!-- FOOTER -->
-<footer class="footer bg-dark">
+<!--<footer class="footer bg-dark">
     <div class="container  w-100 h-100">
         <div class="row">
             <div class="col pt-4">
@@ -105,7 +106,7 @@
             </div>
         </div>
     </div>
-</footer>
+</footer>-->
 <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="./js/bootstrap.js"></script>    
