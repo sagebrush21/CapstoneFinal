@@ -22,7 +22,6 @@ namespace CapstoneFinal
         {
             if(passwordTextBox.Text == confirmPasswordTextBox.Text)
             {
-                string username = usernameTextBox.Text;
                 string password = passwordTextBox.Text;
                 string email = emailTextBox.Text;
                 // String to store sql connection
@@ -32,13 +31,18 @@ namespace CapstoneFinal
                 SqlConnection con = new SqlConnection(a);
                 con.Open();
                 
-                SqlCommand cmd = new SqlCommand("INSERT into Users" + "(username,password,email) values(@username, @password, @email)", con);
-                cmd.Parameters.AddWithValue("@username", username);
+                SqlCommand cmd = new SqlCommand("INSERT into loginTable" + "(password,email) values(@password, @email)", con);
                 cmd.Parameters.AddWithValue("@password", password);
                 cmd.Parameters.AddWithValue("@email", email);
                 cmd.ExecuteNonQuery();
 
-                Response.Redirect("login.aspx");
+                cmd = new SqlCommand("INSERT into profile" + "(email) value(@email)", con);
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.ExecuteNonQuery();
+
+                con.Close();
+
+                Response.Redirect("mainProfile.aspx");
             }
             else
             {

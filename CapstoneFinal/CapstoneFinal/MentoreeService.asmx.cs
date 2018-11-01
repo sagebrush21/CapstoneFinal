@@ -23,7 +23,7 @@ namespace CapstoneFinal
     public class MentoreeService : System.Web.Services.WebService
     {
         [WebMethod(EnableSession = true)]
-        public bool LogOn(string uid, string pass)
+        public bool LogOn(string email, string pass)
         {
             //LOGIC: pass the parameters into the database to see if an account
             //with these credentials exist.  If it does, then log them on by
@@ -37,7 +37,7 @@ namespace CapstoneFinal
             //our connection string comes from our web.config file like we talked about earlier
             string sqlConnectString = ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
             //here's our query.  A basic select with nothing fancy.  Note the parameters that begin with @
-            string sqlSelect = "SELECT id FROM loginTable WHERE username=@idValue and password=@passValue";
+            string sqlSelect = "SELECT id FROM loginTable WHERE email=@email and password=@passValue";
 
             //set up our connection object to be ready to use our connection string
             SqlConnection sqlConnection = new SqlConnection(sqlConnectString);
@@ -47,8 +47,8 @@ namespace CapstoneFinal
             //tell our command to replace the @parameters with real values
             //we decode them because they came to us via the web so they were encoded
             //for transmission (funky characters escaped, mostly)
-            sqlCommand.Parameters.Add("@idValue", System.Data.SqlDbType.NVarChar);
-            sqlCommand.Parameters["@idValue"].Value = HttpUtility.UrlDecode(uid);
+            sqlCommand.Parameters.Add("@email", System.Data.SqlDbType.NVarChar);
+            sqlCommand.Parameters["@email"].Value = HttpUtility.UrlDecode(email);
             sqlCommand.Parameters.Add("@passValue", System.Data.SqlDbType.NVarChar);
             sqlCommand.Parameters["@passValue"].Value = HttpUtility.UrlDecode(pass);
 
@@ -96,8 +96,18 @@ namespace CapstoneFinal
             //decide that after they create an account they still have to log on seperately.  Whatevs.
             string sqlSelect = "insert into loginTable (email, password) " +
                 "values(@email, @password)SELECT SCOPE_IDENTITY();";
+            string sqlSelect2 = "inster into profile (email)" + "values(@email)";
+
 
             SqlConnection sqlConnection = new SqlConnection(sqlConnectString);
+
+            SqlCommand sqlCommand2 = new SqlCommand(sqlSelect2, sqlConnection);
+
+            sqlCommand2.Parameters.Add("@email", System.Data.SqlDbType.NVarChar);
+            sqlCommand2.Parameters["@email"].Value = HttpUtility.UrlDecode(email);
+
+
+
             SqlCommand sqlCommand = new SqlCommand(sqlSelect, sqlConnection);
 
             sqlCommand.Parameters.Add("@email", System.Data.SqlDbType.NVarChar);
