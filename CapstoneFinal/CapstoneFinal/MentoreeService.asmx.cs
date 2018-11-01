@@ -83,7 +83,7 @@ namespace CapstoneFinal
         }
 
         [WebMethod(EnableSession = true)]
-        public bool CreateAccount(string email, string pass, string firstName, string lastName)
+        public bool CreateAccount(string email, string pass)
         {
             //again, this is either gonna work or it won't.  We return this flag to let them
             //know if account creation was successful
@@ -94,20 +94,16 @@ namespace CapstoneFinal
             //we want this, because if the account gets created we will automatically
             //log them on by storing their id in the session.  That's just a design choice.  You could
             //decide that after they create an account they still have to log on seperately.  Whatevs.
-            string sqlSelect = "insert into loginTable (username, password, firstname, lastname) " +
-                "values(@idValue, @passValue, @fnameValue, @lnameValue)SELECT SCOPE_IDENTITY();";
+            string sqlSelect = "insert into loginTable (email, password) " +
+                "values(@email, @password)SELECT SCOPE_IDENTITY();";
 
             SqlConnection sqlConnection = new SqlConnection(sqlConnectString);
             SqlCommand sqlCommand = new SqlCommand(sqlSelect, sqlConnection);
 
-            sqlCommand.Parameters.Add("@idValue", System.Data.SqlDbType.NVarChar);
-            sqlCommand.Parameters["@idValue"].Value = HttpUtility.UrlDecode(email);
-            sqlCommand.Parameters.Add("@passValue", System.Data.SqlDbType.NVarChar);
-            sqlCommand.Parameters["@passValue"].Value = HttpUtility.UrlDecode(pass);
-            sqlCommand.Parameters.Add("@fnameValue", System.Data.SqlDbType.NVarChar);
-            sqlCommand.Parameters["@fnameValue"].Value = HttpUtility.UrlDecode(firstName);
-            sqlCommand.Parameters.Add("@lnameValue", System.Data.SqlDbType.NVarChar);
-            sqlCommand.Parameters["@lnameValue"].Value = HttpUtility.UrlDecode(lastName);
+            sqlCommand.Parameters.Add("@email", System.Data.SqlDbType.NVarChar);
+            sqlCommand.Parameters["@email"].Value = HttpUtility.UrlDecode(email);
+            sqlCommand.Parameters.Add("@password", System.Data.SqlDbType.NVarChar);
+            sqlCommand.Parameters["@password"].Value = HttpUtility.UrlDecode(pass);
 
             //this time, we're not using a data adapter to fill a data table.  We're just
             //opening the connection, telling our command to "executescalar" which says basically

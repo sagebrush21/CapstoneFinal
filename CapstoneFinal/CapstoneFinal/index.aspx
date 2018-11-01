@@ -18,11 +18,11 @@
     </style>
 
     <script type="text/javascript"> 
-        function LogOn(userId, pass) {
+        function LogOn(email, pass) {
             //the url of the webservice we will be talking to
             var webMethod = "MentoreeService.asmx/LogOn";
 
-            var parameters = "{\"uid\":\"" + encodeURI(userId) + "\",\"pass\":\"" + encodeURI(pass) + "\"}";
+            var parameters = "{\"email\":\"" + encodeURI(email + "\",\"pass\":\"" + encodeURI(pass) + "\"}";
 
             //jQuery ajax method
             $.ajax({
