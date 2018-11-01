@@ -50,10 +50,9 @@
 <div class="container text-center pt-5">
    <div>
 		<h1>Create an Account</h1>
-            User Name: <asp:TextBox ID="usernameTextBox" runat="server"></asp:TextBox><br /><br />
+            Email:  <asp:TextBox ID="emailTextBox" runat="server"></asp:TextBox><br /><br />
 			Password:  <asp:TextBox ID="passwordTextBox" runat="server" TextMode="Password"></asp:TextBox><br /><br />
 			Confirm Password: <asp:TextBox ID="confirmPasswordTextBox" runat="server" TextMode="Password"></asp:TextBox><br /><br />
-			Email:  <asp:TextBox ID="emailTextBox" runat="server"></asp:TextBox><br /><br />
             <asp:Button ID="submitButton" runat="server" Text="Submit" OnClick="submitButton_Click" />
 			<br />
 	</div>
