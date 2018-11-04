@@ -69,13 +69,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="css\ProfilePageStyle.css" />
     <Content Include="css\webCSS.css" />
+    <Content Include="editProfile.aspx" />
     <Content Include="images\coffee.png" />
     <Content Include="images\doodles.png" />
     <Content Include="images\halftone.png" />
     <Content Include="images\hip-square.png" />
     <Content Include="images\manatee-transparent-background.png" />
+    <Content Include="images\sealImage.jpg" />
     <Content Include="images\wheat.png" />
+    <Content Include="images\woodBackground.png" />
     <Content Include="images\wov.png" />
     <Content Include="js\jquery-3.3.1.slim.min.map" />
     <Content Include="js\jquery-3.3.1.min.map" />
@@ -130,9 +134,12 @@
     <Content Include="js\umd\popper.js" />
     <Content Include="js\umd\popper.min.js" />
     <Content Include="js\webJava.js" />
+    <Content Include="mainProfile.aspx" />
     <Content Include="MentoreeService.asmx" />
     <Content Include="signUp.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="js\umd\popper.min.js.map" />
     <Content Include="js\umd\popper.js.map" />
     <Content Include="js\umd\popper-utils.min.js.map" />
@@ -144,12 +151,26 @@
     <Content Include="js\popper-utils.js.map" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="editProfile.aspx.cs">
+      <DependentUpon>editProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="editProfile.aspx.designer.cs">
+      <DependentUpon>editProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mainProfile.aspx.cs">
+      <DependentUpon>mainProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mainProfile.aspx.designer.cs">
+      <DependentUpon>mainProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="MentoreeService.asmx.cs">
       <DependentUpon>MentoreeService.asmx</DependentUpon>
