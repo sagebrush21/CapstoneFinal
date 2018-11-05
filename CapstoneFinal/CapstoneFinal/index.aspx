@@ -20,7 +20,7 @@
     <script type="text/javascript"> 
         function LogOn(email, pass) {
             //the url of the webservice we will be talking to
-            var webMethod = "MentoreeService.asmx/LogOn";
+            var webMethod = "./MentoreeService.asmx/LogOn";
 
             var parameters = "{\"email\":\"" + encodeURI(email + "\",\"pass\":\"" + encodeURI(pass) + "\"}";
 
@@ -43,7 +43,7 @@
                     //the server response is in the msg object passed in to the function here
 
                     if (msg.d) {
-                        window.location.href = "";
+                        window.location.href = "mainProfile.aspx";
                     }
                     else {
                         //server replied false, so let the user know

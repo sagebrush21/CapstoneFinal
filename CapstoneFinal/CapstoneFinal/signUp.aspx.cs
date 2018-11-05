@@ -31,7 +31,7 @@ namespace CapstoneFinal
                 SqlConnection con = new SqlConnection(a);
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("INSERT into profile" + "(email) values(@email)", con);
+                SqlCommand cmd = new SqlCommand("INSERT into profile" + "(email) valuest (@email)", con);
                 cmd.Parameters.AddWithValue("@email", email);
                 cmd.ExecuteNonQuery();
 

@@ -64,7 +64,7 @@ namespace CapstoneFinal
             if (sqlDt.Rows.Count > 0)
             {
                 //store the id in the session so other web methods can access it later
-                Session["id"] = sqlDt.Rows[0]["id"];
+                Session["id"] = sqlDt.Rows[2]["id"];
                 //flip our flag to true so we return a value that lets them know they're logged in
                 success = true;
             }
