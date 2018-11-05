@@ -22,7 +22,7 @@
             //the url of the webservice we will be talking to
             var webMethod = "./MentoreeService.asmx/LogOn";
 
-            var parameters = "{\"email\":\"" + encodeURI(email + "\",\"pass\":\"" + encodeURI(pass) + "\"}";
+            var parameters = "{\"email\":\"" + encodeURI(email) + "\",\"pass\":\"" + encodeURI(pass) + "\"}";
 
             //jQuery ajax method
             $.ajax({
@@ -41,8 +41,9 @@
                 //gets a response, it calls the function mapped to the success key here
                 success: function (msg) {
                     //the server response is in the msg object passed in to the function here
-
+                    console.log("test");
                     if (msg.d) {
+                        
                         window.location.href = "mainProfile.aspx";
                     }
                     else {
@@ -91,8 +92,9 @@
 			<asp:TextBox ID="usernameTextBox" runat="server" CssClass="form-control">Email address</asp:TextBox>
             <br />
 			<asp:TextBox ID="passwordTextBox" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox><br />
-            <asp:Button ID="loginButton" runat="server" Text="Sign In" OnClick="loginButton_Click" OnClientClick="LogOn($('#usernameTextBox').val(), $('#passwordTextBox').val()); return false;" CssClass="btn btn-lg btn-primary btn-block" />
-			<br/>
+            <!--<asp:Button ID="loginButton" runat="server" Text="Sign In" OnClick="loginButton_Click" OnClientClick="LogOn($('#usernameTextBox').val(), $('#passwordTextBox').val()); return false;" CssClass="btn btn-lg btn-primary btn-block" /><-->
+		    <button class="btn btn-lg btn-primary btn-block" onclick="LogOn($('#usernameTextBox').val(), $('#passwordTextBox').val()); return false;"></button>	
+        <br/>
             <br />
 		<a href="signUp.aspx"><h4>New User? Click here</h4></a><br />
         <asp:Label ID="errorLabel" runat="server" Visible="False" ForeColor="Red"></asp:Label>
