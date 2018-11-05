@@ -30,15 +30,17 @@ namespace CapstoneFinal
                 a = ConfigurationManager.ConnectionStrings["myDB"].ToString();
                 SqlConnection con = new SqlConnection(a);
                 con.Open();
-                
-                SqlCommand cmd = new SqlCommand("INSERT into loginTable" + "(password,email) values(@password, @email)", con);
+
+                SqlCommand cmd = new SqlCommand("INSERT into profile" + "(email) values(@email)", con);
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.ExecuteNonQuery();
+
+                cmd = new SqlCommand("INSERT into forrest_Login" + "(userPassword,email) values(@password, @email)", con);
                 cmd.Parameters.AddWithValue("@password", password);
                 cmd.Parameters.AddWithValue("@email", email);
                 cmd.ExecuteNonQuery();
 
-                cmd = new SqlCommand("INSERT into profile" + "(email) value(@email)", con);
-                cmd.Parameters.AddWithValue("@email", email);
-                cmd.ExecuteNonQuery();
+            
 
                 con.Close();
 

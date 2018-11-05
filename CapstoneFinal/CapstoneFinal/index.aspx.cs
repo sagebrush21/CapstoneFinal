@@ -23,7 +23,7 @@ namespace CapstoneFinal
             //string username = usernameTextBox.Text;
             //string password = passwordTextBox.Text;
 
-            //string sql = "SELECT* FROM  Users WHERE username=@username AND [password]=@password";
+            //string sql = "SELECT* FROM  forrest_Login WHERE email=@email AND [userpassword]=@password";
 
             //// String to store sql connection
             //SqlConnection con = new SqlConnection();
@@ -32,7 +32,7 @@ namespace CapstoneFinal
 
             //SqlCommand sqlCommand = new SqlCommand(sql, con); ;
             //con.Open();
-            //cmd.Parameters.AddWithValue("@username", username);
+            //cmd.Parameters.AddWithValue("@email", username);
             //cmd.Parameters.AddWithValue("@password", password);
             //cmd.Connection = con;
             //cmd.CommandText = sql;

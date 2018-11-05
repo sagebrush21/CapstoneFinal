@@ -37,7 +37,7 @@ namespace CapstoneFinal
             //our connection string comes from our web.config file like we talked about earlier
             string sqlConnectString = ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
             //here's our query.  A basic select with nothing fancy.  Note the parameters that begin with @
-            string sqlSelect = "SELECT id FROM loginTable WHERE email=@email and password=@passValue";
+            string sqlSelect = "SELECT id FROM forrest_Login WHERE email=@email and userpassword=@passValue";
 
             //set up our connection object to be ready to use our connection string
             SqlConnection sqlConnection = new SqlConnection(sqlConnectString);
@@ -94,7 +94,7 @@ namespace CapstoneFinal
             //we want this, because if the account gets created we will automatically
             //log them on by storing their id in the session.  That's just a design choice.  You could
             //decide that after they create an account they still have to log on seperately.  Whatevs.
-            string sqlSelect = "insert into loginTable (email, password) " +
+            string sqlSelect = "insert into forrest_Login (email, userpassword) " +
                 "values(@email, @password)SELECT SCOPE_IDENTITY();";
             string sqlSelect2 = "inster into profile (email)" + "values(@email)";
 
@@ -152,7 +152,7 @@ namespace CapstoneFinal
             con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "Select * from loginTable where productID = '" + searchID + "'";
+            cmd.CommandText = "Select * from forrest_Login where personID = '" + searchID + "'";
             cmd.Connection = con;
             SqlDataReader rd = cmd.ExecuteReader();
 
