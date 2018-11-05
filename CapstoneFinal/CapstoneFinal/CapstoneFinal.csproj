@@ -69,6 +69,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="calendar.aspx" />
+    <Content Include="css\calendarPageStyle.css" />
     <Content Include="css\ProfilePageStyle.css" />
     <Content Include="css\webCSS.css" />
     <Content Include="editProfile.aspx" />
@@ -81,6 +83,7 @@
     <Content Include="images\wheat.png" />
     <Content Include="images\woodBackground.png" />
     <Content Include="images\wov.png" />
+    <Content Include="js\calendarPageScript.js" />
     <Content Include="js\jquery-3.3.1.slim.min.map" />
     <Content Include="js\jquery-3.3.1.min.map" />
     <None Include="Web.Debug.config">
@@ -151,6 +154,13 @@
     <Content Include="js\popper-utils.js.map" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="calendar.aspx.cs">
+      <DependentUpon>calendar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="calendar.aspx.designer.cs">
+      <DependentUpon>calendar.aspx</DependentUpon>
+    </Compile>
     <Compile Include="editProfile.aspx.cs">
       <DependentUpon>editProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
