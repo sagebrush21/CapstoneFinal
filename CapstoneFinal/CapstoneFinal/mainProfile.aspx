@@ -6,9 +6,30 @@
 <head runat="server">
     <title>Mentoree Profile</title>
     <link href = "./css/ProfilePageStyle.css" type = "text/css" rel= "stylesheet">
+    <link rel="stylesheet" href="./css/bootstrap.css"/>
+    <link rel="stylesheet" href="./css/webCSS.css"/>
 </head>
 <body>
     <form id="form1" runat="server">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bgark">
+    <a class="navbar-brand" href="index.aspx"><img class="brand-image" src="./images/manatee-transparent-background.png" height="30" width="30"/>CoffeeMate</a>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse text-center" id="navbarNavAltMarkup">
+        <div class="navbar-nav mr-auto navbar-left font-sz-5">
+        </div>
+        <div class="navbar-nav ml-auto navbar-right font-sz-5">
+            <a class="nav-item nav-link ml-2 active" href="mainProfile.aspx">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="editProfile.aspx"> Edit Profile </a>
+            <a class="nav-item nav-link ml-2" href="calendar.aspx">Calendar</a>
+            <a class="nav-item nav-link ml-2" href="index.aspx">Logout</a>
+        </div>
+    </div>
+    
+</nav>
         <header >
 		<div>
 			<div id = "leftHeader"> 

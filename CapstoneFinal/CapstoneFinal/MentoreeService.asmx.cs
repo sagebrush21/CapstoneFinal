@@ -37,7 +37,7 @@ namespace CapstoneFinal
             //our connection string comes from our web.config file like we talked about earlier
             string sqlConnectString = ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
             //here's our query.  A basic select with nothing fancy.  Note the parameters that begin with @
-            string sqlSelect = "SELECT id FROM forrest_Login WHERE email=@email and userpassword=@passValue";
+            string sqlSelect = "SELECT personID FROM forrest_Login WHERE email=@email and userpassword=@passValue";
 
             //set up our connection object to be ready to use our connection string
             SqlConnection sqlConnection = new SqlConnection(sqlConnectString);
@@ -64,7 +64,7 @@ namespace CapstoneFinal
             if (sqlDt.Rows.Count > 0)
             {
                 //store the id in the session so other web methods can access it later
-                Session["id"] = sqlDt.Rows[2]["id"];
+                Session["id"] = sqlDt.Rows[0]["personID"];
                 //flip our flag to true so we return a value that lets them know they're logged in
                 success = true;
             }

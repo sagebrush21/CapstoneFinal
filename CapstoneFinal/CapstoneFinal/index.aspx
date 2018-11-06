@@ -89,11 +89,11 @@
         <img class="mb-4" src="./images/manatee-transparent-background.png" alt="Mentoree" width="50%">
     <h1>Please sign in</h1>
 		<br />
-			<asp:TextBox ID="usernameTextBox" runat="server" CssClass="form-control">Email address</asp:TextBox>
+			<asp:TextBox ID="usernameTextBox" runat="server" CssClass="form-control" placeholder="Email Address"></asp:TextBox>
             <br />
-			<asp:TextBox ID="passwordTextBox" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox><br />
+			<asp:TextBox ID="passwordTextBox" runat="server" TextMode="Password" CssClass="form-control" placeholder="Password"></asp:TextBox><br />
             <!--<asp:Button ID="loginButton" runat="server" Text="Sign In" OnClick="loginButton_Click" OnClientClick="LogOn($('#usernameTextBox').val(), $('#passwordTextBox').val()); return false;" CssClass="btn btn-lg btn-primary btn-block" /><-->
-		    <button class="btn btn-lg btn-primary btn-block" onclick="LogOn($('#usernameTextBox').val(), $('#passwordTextBox').val()); return false;"></button>	
+		    <button class="btn btn-lg btn-primary btn-block" onclick="LogOn($('#usernameTextBox').val(), $('#passwordTextBox').val()); return false;">Login</button>	
         <br/>
             <br />
 		<a href="signUp.aspx"><h4>New User? Click here</h4></a><br />

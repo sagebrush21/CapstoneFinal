@@ -71,6 +71,7 @@
     <None Include="packages.config" />
     <Content Include="calendar.aspx" />
     <Content Include="css\calendarPageStyle.css" />
+    <Content Include="css\profileEditStyles.css" />
     <Content Include="css\ProfilePageStyle.css" />
     <Content Include="css\webCSS.css" />
     <Content Include="editProfile.aspx" />
