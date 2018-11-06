@@ -6,6 +6,8 @@
 <head runat="server">
     <title></title>
     <link type="text/css" rel="stylesheet" href="./css/calendarPageStyle.css">
+     <link rel="stylesheet" href="./css/bootstrap.css"/>
+    <link rel="stylesheet" href="./css/webCSS.css"/>"
         <script type="text/javascript" src="./js/calendarPageScript.js"></script>
 </head>
 <body>
@@ -27,6 +29,7 @@
             <a class="nav-item nav-link ml-2" href="index.aspx">Logout</a>
         </div>
     </div>
+    </nav>
         <div id="topHalf">
         <div id="calendar-container">
             <div id="calendar-header">
