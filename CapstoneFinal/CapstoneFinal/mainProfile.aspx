@@ -8,6 +8,47 @@
     <link href = "./css/ProfilePageStyle.css" type = "text/css" rel= "stylesheet">
     <link rel="stylesheet" href="./css/bootstrap.css"/>
     <link rel="stylesheet" href="./css/webCSS.css"/>
+
+    <script type="text/javascript"> 
+        function LogOn(email, pass) {
+            //the url of the webservice we will be talking to
+            var webMethod = "./MentoreeService.asmx/LoadProfile";
+
+            //jQuery ajax method
+            $.ajax({
+                //post is more secure than get, and allows
+                //us to send big data if we want.  really just
+                //depends on the way the service you're talking to is set up, though
+                type: "POST",
+                //the url is set to the string we created above
+                url: webMethod,
+                //these next two key/value pairs say we intend to talk in JSON format
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                //jQuery sends the data and asynchronously waits for a response.  when it
+                //gets a response, it calls the function mapped to the success key here
+                success: function (msg) {
+                    //the server response is in the msg object passed in to the function here
+                    console.log("test");
+                    if (msg != null) {
+                        
+                        window.location.href = "mainProfile.aspx";
+                    }
+                    else {
+                        //server replied false, so let the user know
+                        //the logon failed
+                        alert("logon failed");
+                    }
+                },
+                error: function (e) {
+                    //if something goes wrong in the mechanics of delivering the
+                    //message to the server or the server processing that message,
+                    alert("boo...");
+                }
+            });
+        }
+
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -91,7 +132,9 @@
 
 			</div>
 		</main>
+        <div id="profileDisplay">
 
+        </div>
 		<footer>
 			<div class="footer">
 				<p>Notice of Privacy Practices</p>
