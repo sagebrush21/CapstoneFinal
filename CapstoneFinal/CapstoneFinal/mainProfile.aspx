@@ -30,14 +30,14 @@
                 success: function (msg) {
                     //the server response is in the msg object passed in to the function here
                     console.log("test");
-                    if (msg != null) {
+                    if (msg.d != null) {
                         
                         console.log(msg);
                     }
                     else {
                         //server replied false, so let the user know
                         //the logon failed
-                        alert("logon failed");
+                        window.location.href = "index.aspx";
                     }
                 },
                 error: function (e) {

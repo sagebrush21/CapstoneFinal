@@ -138,53 +138,67 @@ namespace CapstoneFinal
 
         [WebMethod(EnableSession = true)]
         public string LoadProfile()
-        {
+        {   
             List<Info> lst = new List<Info>();
             //the only thing fancy about this query is SELECT SCOPE_IDENTITY() at the end.  All that
             //does is tell sql server to return the primary key of the last inserted row.
             //we want this, because if the account gets created we will automatically
             //log them on by storing their id in the session.  That's just a design choice.  You could
             //decide that after they create an account they still have to log on seperately.  Whatevs.
+            try {
+                string searchID = Session["id"].ToString();
 
-            string searchID = Session["id"].ToString();
-
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "Select * from login where userID = '" + searchID + "'";
-            cmd.Connection = con;
-            SqlDataReader rd = cmd.ExecuteReader();
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "Select * from profileTable where (select userEmail from login where userID = '" + searchID + "');";
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
 
 
 
-            if (rd.HasRows)
-            {
-                while(rd.Read())
+                if (rd.HasRows)
                 {
-                    int id = Convert.ToInt32(rd[2]);
-                    string email = rd[0].ToString().Trim();
-                    string password = rd[1].ToString().Trim();
-                    lst.Add(new Info(id, email, password));
+                    while (rd.Read())
+                    {
+                        string email = rd[0].ToString().Trim();
+                        string firstName = rd[1].ToString().Trim();
+                        string lastName = rd[2].ToString().Trim();
+                        string currentPosition = rd[3].ToString().Trim();
+                        string edu_or_cert = rd[4].ToString().Trim();
+                        string  = rd[5].ToString().Trim();
+                        string currentPosition = rd[6].ToString().Trim();
+                        string currentPosition = rd[7].ToString().Trim();
+                        string currentPosition = rd[8].ToString().Trim();
+                        string currentPosition = rd[9].ToString().Trim();
+                        string currentPosition = rd[10].ToString().Trim();
+                        lst.Add(new Info(id, email, password));
+                    }
+
+                    string str = new JavaScriptSerializer().Serialize(lst);
+                    return str;
+                    //while (rd.Read())
+                    //{
+                    //    //object binaryData = rd[0];
+                    //    //byte[] bytes = (byte[])binaryData;
+                    //    //string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
+
+
+                    //    // mainImage.ImageUrl = "data:image/jpg;base64," + base64String;
+
+                    //}
                 }
-
-                string str = new JavaScriptSerializer().Serialize(lst);
-                return str;
-                //while (rd.Read())
-                //{
-                //    //object binaryData = rd[0];
-                //    //byte[] bytes = (byte[])binaryData;
-                //    //string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
-
-
-                //    // mainImage.ImageUrl = "data:image/jpg;base64," + base64String;
-
-                //}
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch
             {
                 return null;
             }
+            
 
         }
     }
