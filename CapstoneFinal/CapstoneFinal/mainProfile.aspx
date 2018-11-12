@@ -31,8 +31,7 @@
                     //the server response is in the msg object passed in to the function here
                     console.log("test");
                     if (msg.d != null) {
-                        
-                        console.log(msg);
+                        createDom(msg);
                     }
                     else {
                         //server replied false, so let the user know
@@ -48,6 +47,71 @@
             });
         }
 
+        function createDom(msg) {
+            var obj = JSON.parse(msg.d);
+            console.log(obj);
+
+            var name = document.createElement('h1');
+            var position = document.createElement('h6');
+            var cert = document.createElement('h6');
+            var city = document.createElement('h6');
+
+            name.append(obj[0].FirstName + " " + obj[0].LastName);
+            position.append(obj[0].CurrentPosition);
+            cert.append(obj[0].Edu_or_cert);
+            city.append(obj[0].UserCity);
+
+            $("#rightHeader").append(name);
+            $("#rightHeader").append(position);
+            $("#rightHeader").append(cert);
+            $("#rightHeader").append(city);
+
+            var goals = obj[0].Goals.split(",");
+            var displayGoal = document.createElement('ul');
+
+           
+            for (i = 0; i < goals.length; i++){
+                var goalLi = document.createElement('li');
+                goalLi.appendChild(document.createTextNode(goals[i]));
+                displayGoal.appendChild(goalLi);
+            }
+            
+            $('#goals').append(displayGoal);
+
+           
+            var skills = obj[0].Skills.split(",");
+            var displaySkills = document.createElement('ul');
+            
+            
+            console.log(skillsLi);
+            for (i = 0; i < skills.length; i++){
+                var skillsLi = document.createElement('li');
+                skillsLi.appendChild(document.createTextNode(skills[i]));
+                displaySkills.appendChild(skillsLi);
+
+               
+            }
+            $('#skills').append(displaySkills);
+            
+
+            var experience = obj[0].Experience.split(",");
+            var displayExperience = document.createElement('ul');
+
+           
+            for (i = 0; i < experience.length; i++) {
+                var experienceLi = document.createElement('li');
+                experienceLi.appendChild(document.createTextNode(experience[i]));
+                displayExperience.appendChild(experienceLi);
+            }
+
+            $('#experience').append(displayExperience);
+
+            var times = document.createElement('p');
+
+            times.append(obj[0].UserAvailability);
+
+            $("#times").append(times);
+        }
     </script>
 </head>
 <body onload="LogOn();">
@@ -78,56 +142,56 @@
 			</div>
 
 			<div id = "rightHeader">
-				<h1> Dr.Manly Tee</h1>
+				<!--<h1> Dr.Manly Tee</h1>
 				<h6> Senior Business Consultant at PacificRim</h6>
 				<h6> PhD in bubbies, Arizona State University</h6>
-				<h6> San Francisco, CA</h6>
+				<h6> San Francisco, CA</h6> -->
 			</div>
 		</div>
 	</header>
 
-		<hr style = "color = 1px maroon;">
+		<hr style = "color = 1px maroon;" />
 
 		<main>
 			<div>
-				<div class="container">
+				<div id="goals" class="container">
 					<h2>Goals: </h2>
-					<nav>
+					<!--<nav>
 						<ul>
 							<li>Gain experience in marketing</li>
 							<li>Cross training in sustainability</li>
 							<li>Further my career in business leadership</li>
 						</ul>
-					</nav>
+					</nav>-->
 				</div>
 
-				<div class="container">
+				<div id="skills" class="container">
 					<h2>Skills: </h2>
-					<nav>
+					<!--<nav>
 						<ul>
 							<li>Leadership</li>
 							<li>Management</li>
 							<li>Communication</li>
 							<li>Consulting</li>
 						</ul>
-					</nav>
+					</nav>-->
 				</div>
 
-				<div class="container">
+				<div id="experience" class="container">
 					<h2>Experience: </h2>
-					<nav>
+					<!--<nav>
 						<ul>
 							<li>25 years of Shark Management</li>
 							<li>Well practiced bubble blower</li>
 						</ul>
-					</nav>
+					</nav>-->
 				</div>
 
 
-				<div class="container">
+				<div id="times" class="container">
 					<h2>Best times to reach me: </h2>
 					
-					<p>M-F at 12-2pm or Weekends from 3-6pm.</p>
+					<!--<p>M-F at 12-2pm or Weekends from 3-6pm.</p>-->
 				</div>
 
 			</div>

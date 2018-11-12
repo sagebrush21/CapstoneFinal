@@ -152,7 +152,7 @@ namespace CapstoneFinal
                 con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "Select * from profileTable where (select userEmail from login where userID = '" + searchID + "');";
+                cmd.CommandText = "Select * from profileTable where userEmail = (select userEmail from login where userID = '" + searchID + "');";
                 cmd.Connection = con;
                 SqlDataReader rd = cmd.ExecuteReader();
 
@@ -162,18 +162,18 @@ namespace CapstoneFinal
                 {
                     while (rd.Read())
                     {
-                        string email = rd[0].ToString().Trim();
-                        string firstName = rd[1].ToString().Trim();
-                        string lastName = rd[2].ToString().Trim();
-                        string currentPosition = rd[3].ToString().Trim();
-                        string edu_or_cert = rd[4].ToString().Trim();
-                        string userCity = rd[5].ToString().Trim();
-                        string userState = rd[6].ToString().Trim();
-                        string userCountry = rd[7].ToString().Trim();
-                        string goals = rd[8].ToString().Trim();
-                        string skills = rd[9].ToString().Trim();
-                        string experience = rd[10].ToString().Trim();
-                        string userAvailability = rd[11].ToString().Trim();
+                        string email = rd[0].ToString().Trim() ?? "";
+                        string firstName = rd[1].ToString().Trim() ?? "";
+                        string lastName = rd[2].ToString().Trim() ?? "";
+                        string currentPosition = rd[3].ToString().Trim() ?? "";
+                        string edu_or_cert = rd[4].ToString().Trim() ?? "";
+                        string userCity = rd[5].ToString().Trim() ?? "";
+                        string userState = rd[6].ToString().Trim() ?? "";
+                        string userCountry = rd[7].ToString().Trim() ?? "";
+                        string goals = rd[8].ToString().Trim() ?? "";
+                        string skills = rd[9].ToString().Trim() ?? "";
+                        string experience = rd[10].ToString().Trim() ?? "";
+                        string userAvailability = rd[11].ToString().Trim() ?? "";
                         lst.Add(new Info(email, firstName, lastName, currentPosition, edu_or_cert, userCity, userState, userCountry, goals, skills, experience, userAvailability));
                     }
 
