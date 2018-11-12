@@ -4,6 +4,10 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+      <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    
     <title>Mentoree Profile</title>
     <link href = "./css/ProfilePageStyle.css" type = "text/css" rel= "stylesheet"/>
     <link rel="stylesheet" href="./css/bootstrap.css"/>
@@ -46,6 +50,7 @@
                 }
             });
         }
+
 
         function createDom(msg) {
             var obj = JSON.parse(msg.d);
@@ -128,8 +133,9 @@
         </div>
         <div class="navbar-nav ml-auto navbar-right font-sz-5">
             <a class="nav-item nav-link ml-2 active" href="mainProfile.aspx">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="editProfile.aspx"> Edit Profile </a>
+            <a class="nav-item nav-link ml-2" href="editProfile.aspx"> Edit Profile </a>
             <a class="nav-item nav-link ml-2" href="calendar.aspx">Calendar</a>
+            <a class="nav-item nav-link ml-2" href="contacts.aspx">Contacts</a>
             <a class="nav-item nav-link ml-2" href="index.aspx">Logout</a>
         </div>
     </div>

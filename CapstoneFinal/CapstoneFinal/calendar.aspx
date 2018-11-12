@@ -23,9 +23,10 @@
         <div class="navbar-nav mr-auto navbar-left font-sz-5">
         </div>
         <div class="navbar-nav ml-auto navbar-right font-sz-5">
-            <a class="nav-item nav-link ml-2 active" href="mainProfile.aspx">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="editProfile.aspx"> Edit Profile </a>
-            <a class="nav-item nav-link ml-2" href="calendar.aspx">Calendar</a>
+            <a class="nav-item nav-link ml-2 " href="mainProfile.aspx">Home </a>
+            <a class="nav-item nav-link ml-2" href="editProfile.aspx"> Edit Profile </a>
+            <a class="nav-item nav-link ml-2 active" href="calendar.aspx">Calendar<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link ml-2" href="contacts.aspx">Contacts</a>
             <a class="nav-item nav-link ml-2" href="index.aspx">Logout</a>
         </div>
     </div>
@@ -69,5 +70,14 @@
 		</div>
 
     </form>
+    <footer class="footer bg-dark">
+            <div class="container  w-100 h-100">
+                   <div class="row">
+                     <div class="col pt-4">
+                          <p class="text-white text-right"><a href="#">Notice of Privacy Practices</a></p>
+                     </div>
+                 </div>
+              </div>
+        </footer>
 </body>
 </html>
