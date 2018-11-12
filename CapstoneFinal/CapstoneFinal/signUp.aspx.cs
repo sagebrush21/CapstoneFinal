@@ -24,6 +24,8 @@ namespace CapstoneFinal
             {
                 string password = passwordTextBox.Text;
                 string email = emailTextBox.Text;
+                string firstName = firstNameTextBox.Text;
+                string lastName = lastNameTextBox.Text;
                 // String to store sql connection
                 string a;
                 // Connection string from sql database stored and connection established
@@ -31,13 +33,17 @@ namespace CapstoneFinal
                 SqlConnection con = new SqlConnection(a);
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("INSERT into profile" + "(email) valuest (@email)", con);
+
+                SqlCommand cmd = new SqlCommand("INSERT into login" + "(userPassword,userEmail) values(@password, @email)", con);
+                cmd.Parameters.AddWithValue("@password", password);
                 cmd.Parameters.AddWithValue("@email", email);
                 cmd.ExecuteNonQuery();
 
-                cmd = new SqlCommand("INSERT into forrest_Login" + "(userPassword,email) values(@password, @email)", con);
-                cmd.Parameters.AddWithValue("@password", password);
+
+                cmd = new SqlCommand("INSERT into profileTable" + "(userEmail, firstName, lastName) values (@email, @first, @last)", con);
                 cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@first", firstName);
+                cmd.Parameters.AddWithValue("@last", lastName);
                 cmd.ExecuteNonQuery();
 
             

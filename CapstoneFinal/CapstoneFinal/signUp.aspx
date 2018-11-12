@@ -51,6 +51,8 @@
    <div>
 		<h1>Create an Account</h1>
             Email:  <asp:TextBox ID="emailTextBox" runat="server"></asp:TextBox><br /><br />
+            First Name: <asp:TextBox ID="firstNameTextBox" runat="server"></asp:TextBox><br /><br />
+            Last Name: <asp:TextBox ID="lastNameTextBox" runat="server"></asp:TextBox><br /><br />
 			Password:  <asp:TextBox ID="passwordTextBox" runat="server" TextMode="Password"></asp:TextBox><br /><br />
 			Confirm Password: <asp:TextBox ID="confirmPasswordTextBox" runat="server" TextMode="Password"></asp:TextBox><br /><br />
             <asp:Button ID="submitButton" runat="server" Text="Submit" OnClick="submitButton_Click" />

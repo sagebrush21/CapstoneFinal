@@ -37,7 +37,7 @@ namespace CapstoneFinal
             //our connection string comes from our web.config file like we talked about earlier
             string sqlConnectString = ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
             //here's our query.  A basic select with nothing fancy.  Note the parameters that begin with @
-            string sqlSelect = "SELECT personID FROM forrest_Login WHERE email=@email and userpassword=@passValue";
+            string sqlSelect = "SELECT userID FROM login WHERE userEmail=@email and userPassword=@passValue";
 
             //set up our connection object to be ready to use our connection string
             SqlConnection sqlConnection = new SqlConnection(sqlConnectString);
@@ -64,7 +64,7 @@ namespace CapstoneFinal
             if (sqlDt.Rows.Count > 0)
             {
                 //store the id in the session so other web methods can access it later
-                Session["id"] = sqlDt.Rows[0]["personID"];
+                Session["id"] = sqlDt.Rows[0]["userID"];
                 //flip our flag to true so we return a value that lets them know they're logged in
                 success = true;
             }
@@ -94,9 +94,9 @@ namespace CapstoneFinal
             //we want this, because if the account gets created we will automatically
             //log them on by storing their id in the session.  That's just a design choice.  You could
             //decide that after they create an account they still have to log on seperately.  Whatevs.
-            string sqlSelect = "insert into forrest_Login (email, userpassword) " +
+            string sqlSelect = "insert into login (userEmail, userPassword) " +
                 "values(@email, @password)SELECT SCOPE_IDENTITY();";
-            string sqlSelect2 = "inster into profile (email)" + "values(@email)";
+            string sqlSelect2 = "inster into profileTable (userEmail)" + "values(@email)";
 
 
             SqlConnection sqlConnection = new SqlConnection(sqlConnectString);
@@ -139,7 +139,7 @@ namespace CapstoneFinal
         [WebMethod(EnableSession = true)]
         public string LoadProfile()
         {
-   
+            List<Info> lst = new List<Info>();
             //the only thing fancy about this query is SELECT SCOPE_IDENTITY() at the end.  All that
             //does is tell sql server to return the primary key of the last inserted row.
             //we want this, because if the account gets created we will automatically
@@ -152,7 +152,7 @@ namespace CapstoneFinal
             con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
             con.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "Select * from forrest_Login where personID = '" + searchID + "'";
+            cmd.CommandText = "Select * from login where userID = '" + searchID + "'";
             cmd.Connection = con;
             SqlDataReader rd = cmd.ExecuteReader();
 
@@ -160,10 +160,16 @@ namespace CapstoneFinal
 
             if (rd.HasRows)
             {
-                JavaScriptSerializer js = new JavaScriptSerializer();
-                string retJSON = js.Serialize(rd);
-                return retJSON;
-                
+                while(rd.Read())
+                {
+                    int id = Convert.ToInt32(rd[2]);
+                    string email = rd[0].ToString().Trim();
+                    string password = rd[1].ToString().Trim();
+                    lst.Add(new Info(id, email, password));
+                }
+
+                string str = new JavaScriptSerializer().Serialize(lst);
+                return str;
                 //while (rd.Read())
                 //{
                 //    //object binaryData = rd[0];

@@ -5,12 +5,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Mentoree Profile</title>
-    <link href = "./css/ProfilePageStyle.css" type = "text/css" rel= "stylesheet">
+    <link href = "./css/ProfilePageStyle.css" type = "text/css" rel= "stylesheet"/>
     <link rel="stylesheet" href="./css/bootstrap.css"/>
     <link rel="stylesheet" href="./css/webCSS.css"/>
 
     <script type="text/javascript"> 
-        function LogOn(email, pass) {
+        function LogOn() {
             //the url of the webservice we will be talking to
             var webMethod = "./MentoreeService.asmx/LoadProfile";
 
@@ -32,7 +32,7 @@
                     console.log("test");
                     if (msg != null) {
                         
-                        window.location.href = "mainProfile.aspx";
+                        console.log(msg);
                     }
                     else {
                         //server replied false, so let the user know
@@ -50,9 +50,9 @@
 
     </script>
 </head>
-<body>
+<body onload="LogOn();">
     <form id="form1" runat="server">
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bgark">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bgark">
     <a class="navbar-brand" href="index.aspx"><img class="brand-image" src="./images/manatee-transparent-background.png" height="30" width="30"/>CoffeeMate</a>
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -140,7 +140,9 @@
 				<p>Notice of Privacy Practices</p>
 			</div>
 		</footer>
-
+        <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="./js/bootstrap.js"></script>  
     </form>
 </body>
 </html>
