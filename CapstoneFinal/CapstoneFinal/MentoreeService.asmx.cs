@@ -167,13 +167,14 @@ namespace CapstoneFinal
                         string lastName = rd[2].ToString().Trim();
                         string currentPosition = rd[3].ToString().Trim();
                         string edu_or_cert = rd[4].ToString().Trim();
-                        string  = rd[5].ToString().Trim();
-                        string currentPosition = rd[6].ToString().Trim();
-                        string currentPosition = rd[7].ToString().Trim();
-                        string currentPosition = rd[8].ToString().Trim();
-                        string currentPosition = rd[9].ToString().Trim();
-                        string currentPosition = rd[10].ToString().Trim();
-                        lst.Add(new Info(id, email, password));
+                        string userCity = rd[5].ToString().Trim();
+                        string userState = rd[6].ToString().Trim();
+                        string userCountry = rd[7].ToString().Trim();
+                        string goals = rd[8].ToString().Trim();
+                        string skills = rd[9].ToString().Trim();
+                        string experience = rd[10].ToString().Trim();
+                        string userAvailability = rd[11].ToString().Trim();
+                        lst.Add(new Info(email, firstName, lastName, currentPosition, edu_or_cert, userCity, userState, userCountry, goals, skills, experience, userAvailability));
                     }
 
                     string str = new JavaScriptSerializer().Serialize(lst);
