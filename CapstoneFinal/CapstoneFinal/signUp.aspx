@@ -55,7 +55,8 @@
             Last Name: <asp:TextBox ID="lastNameTextBox" runat="server"></asp:TextBox><br /><br />
 			Password:  <asp:TextBox ID="passwordTextBox" runat="server" TextMode="Password"></asp:TextBox><br /><br />
 			Confirm Password: <asp:TextBox ID="confirmPasswordTextBox" runat="server" TextMode="Password"></asp:TextBox><br /><br />
-            <asp:Button ID="submitButton" runat="server" Text="Submit" OnClick="submitButton_Click" />
+            <asp:Button ID="submitButton" runat="server" Text="Submit" OnClick="submitButton_Click" CssClass="btn btn-primary"/>
+			<asp:Button ID="cancelButton" runat="server" Text="Cancel" CssClass="btn btn-primary" />
 			<br />
 	</div>
 </div> 

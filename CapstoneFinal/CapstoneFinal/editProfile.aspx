@@ -12,7 +12,7 @@
 <body>
     <form id="form1" runat="server">
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bgark">
-    <a class="navbar-brand" href="index.aspx"><img class="brand-image" src="./images/manatee-transparent-background.png" height="30" width="30"/>CoffeeMate</a>
+    <a class="navbar-brand" href="index.aspx"><img class="brand-image" src="./images/manatee-transparent-background.png" height="30" width="30"/>Mentoree</a>
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -127,11 +127,15 @@
 		</fieldset>
 		</form>
 	</div>
-		<footer>
-			<div class="footer">
-				<p>Notice of Privacy Practices</p>
-			</div>
-		</footer>
+		<footer class="footer bg-dark">
+            <div class="container  w-100 h-100">
+                   <div class="row">
+                     <div class="col pt-4">
+                          <p class="text-white text-right"><a href="#">Notice of Privacy Practices</a></p>
+                     </div>
+                 </div>
+              </div>
+        </footer>
 
     </form>
 </body>

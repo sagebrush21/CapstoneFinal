@@ -61,5 +61,10 @@ namespace CapstoneFinal
 
 
         }
+
+        protected void cancelButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("index.aspx");
+        }
     }
 }
