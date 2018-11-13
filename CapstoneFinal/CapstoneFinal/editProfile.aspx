@@ -12,6 +12,9 @@
     <link href = "./css/ProfileEditStyle.css" type = "text/css" rel= "stylesheet"/>
     <link rel="stylesheet" href="./css/bootstrap.css"/>
     <link rel="stylesheet" href="./css/webCSS.css"/>
+
+      <script type="text/javascript"> 
+          </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -36,7 +39,7 @@
     
 </nav>
         <div id="profileImage">
-		<img src="..\images\sealImage.jpg" alt="profileImage">
+		<img src=".\images\sealImage.jpg" alt="profileImage">
 		<button type="button">Edit Picture</button>
 	</div>
 	
@@ -44,13 +47,13 @@
 		<form id="basicInfo" action="">
 			<fieldset>
 				<legend>Basic Information:</legend>
-			<div> First name: <input type="text" name="firstName"> </div>
-			<div> Last name: <input type="text" name="lastName"> </div>
-			<div> Current Position: <input type="text" name="position"> </div>
-			<div> Certification: <input type="text" name="cert"> </div>
-			<div> City: <input type="text name="city"> </div>
-			<div> State: <input type="text name="state"> </div>
-			<div> Country: <input type="text" name="country"> </div>
+			<div> First name: <input id="firstName" type="text" name="firstName"> </div>
+			<div> Last name: <input id="lastName" type="text" name="lastName"> </div>
+			<div> Current Position: <input id="position" type="text" name="position"> </div>
+			<div> Certification: <input id="cert" type="text" name="cert"> </div>
+			<div> City: <input id="city" type="text name="city"> </div>
+			<div> State: <input id="state" type="text name="state"> </div>
+			<div> Country: <input id="country" type="text" name="country"> </div>
 			</fieldset>
 		</form>
 	</div>
@@ -65,7 +68,7 @@
 			<h2>Goals:</h2> 
 			<ul>
 				<li>
-				<select name="Goals1">
+				<select id="goals1" name="Goals1">
 					<option value="blank"></option>
 					<option value="Leadership">Leadership</option>
 					<option value="Management">Management</option>
@@ -78,7 +81,7 @@
 				</li>
 				
 				<li>
-				<select name="Goals2">
+				<select id="goals2" name="Goals2">
 					<option value="blank"></option>
 					<option value="Leadership">Leadership</option>
 					<option value="Management">Management</option>
@@ -94,7 +97,7 @@
 		<h2>Skills:</h2>
 		<ul>
 			<li>
-			<select name="Skills1">
+			<select id="skills1" name="Skills1">
 				<option value="blank"></option>
 				<option value="Leadership">Leadership</option>
 				<option value="Management">Management</option>
@@ -107,7 +110,7 @@
 			</li>
 		
 			<li>
-			<select name="Skills2">
+			<select id="skills2" name="Skills2">
 				<option value="blank"></option>
 				<option value="Leadership">Leadership</option>
 				<option value="Management">Management</option>
@@ -122,14 +125,15 @@
 			
 			<h2>Experience:</h2>  
 			<ul>
-				<li><input type="text"></li>
-				<li><input type="text"></li>
-				<li><input type="text"></li>
+				<li><input id="experience1" type="text"></li>
+				<li><input id="experience2" type="text"></li>
+				<li><input id="experience3" type="text"></li>
 			</ul>
 		
 			<h2>Availability:</h2> 
-			<input type="text" value="Best times to reach me: ..." name="availability">
+			<input id="availability" type="text" value="Best times to reach me: ..." name="availability">
 		</fieldset>
+            <button onclick="" class="btn btn-primary">Submit</button>
 		</form>
 	</div>
 		<footer class="footer bg-dark">
