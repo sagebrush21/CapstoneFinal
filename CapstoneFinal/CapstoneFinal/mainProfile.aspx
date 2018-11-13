@@ -117,6 +117,10 @@
 
             $("#times").append(times);
         }
+
+        function createConnections() {
+
+        }
     </script>
 </head>
 <body onload="LogOn();">
