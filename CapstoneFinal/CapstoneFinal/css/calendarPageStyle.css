@@ -1,0 +1,58 @@
+body
+{
+    background-image: url("../images/woodBackground.png")
+}
+
+#calendar-container{
+    padding: 10px;
+    width: 220px;
+    height: auto;
+    text-align: center;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: Arial;
+    background-image: linear-gradient(#fff, #d3d3d3);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+#calendar-container>div{
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+#calendar-month-year{
+    margin: 5px;
+}
+
+#calendar-dates>table>tr>td{
+    padding: 5px;
+}
+
+/*hr line*/
+#calendarLine
+{
+    border: 0.6px dashed rgb(120,120,120);
+    width: 95%;
+}
+
+#event-container
+{
+    font-family:Arial;
+    font-size: 14px;
+    margin: 1em, 1em, 1em, 1em;
+    height: 25em;
+    overflow: auto;
+
+}
+
+.event
+{
+    border: 0.75px solid #ddd;
+    margin: 10px;
+    padding: 5px;
+    background: rgba(240,240,240,0.45);
+}
