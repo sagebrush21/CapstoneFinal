@@ -77,7 +77,7 @@
                     else {
                         //server replied false, so let the user know
                         //the logon failed
-                        window.location.href = "index.aspx";
+                        
                     }
                 },
                 error: function (e) {

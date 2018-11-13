@@ -77,7 +77,7 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 //jQuery sends the data and asynchronously waits for a response.  when it
-                //gets a response, it calls the function mapped to the success key here
+                //gets a response, it calls the function mapped to the success key heresw
                 success: function (msg) {
                     //the server response is in the msg object passed in to the function here
                   
