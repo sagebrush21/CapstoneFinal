@@ -70,6 +70,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="calendar.aspx" />
+    <Content Include="connectionProfile.aspx" />
     <Content Include="contacts.aspx" />
     <Content Include="css\calendarPageStyle.css" />
     <Content Include="css\contactPageStyle.css" />
@@ -170,6 +171,13 @@
     </Compile>
     <Compile Include="calendar.aspx.designer.cs">
       <DependentUpon>calendar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="connectionProfile.aspx.cs">
+      <DependentUpon>connectionProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="connectionProfile.aspx.designer.cs">
+      <DependentUpon>connectionProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="contacts.aspx.cs">
       <DependentUpon>contacts.aspx</DependentUpon>

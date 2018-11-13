@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="mainProfile.aspx.cs" Inherits="CapstoneFinal.mainProfile" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="connectionProfile.aspx.cs" Inherits="CapstoneFinal.connectionProfile" %>
 
 <!DOCTYPE html>
 
@@ -9,14 +9,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     
     <title>Mentoree Profile</title>
+
     <link href = "./css/ProfilePageStyle.css" type = "text/css" rel= "stylesheet"/>
     <link rel="stylesheet" href="./css/bootstrap.css"/>
     <link rel="stylesheet" href="./css/webCSS.css"/>
 
     <script type="text/javascript"> 
+
         function LogOn() {
             //the url of the webservice we will be talking to
-            var webMethod = "./MentoreeService.asmx/LoadProfile";
+            var webMethod = "./MentoreeService.asmx/TempProfile";
 
             //jQuery ajax method
             $.ajax({
@@ -33,14 +35,14 @@
                 //gets a response, it calls the function mapped to the success key here
                 success: function (msg) {
                     //the server response is in the msg object passed in to the function here
-                    
+
                     if (msg.d != null) {
                         createDom(msg);
                     }
                     else {
                         //server replied false, so let the user know
                         //the logon failed
-                        window.location.href = "index.aspx";
+                        alert("error");
                     }
                 },
                 error: function (e) {
@@ -51,42 +53,6 @@
             });
         }
 
-        function Connection() {
-            //the url of the webservice we will be talking to
-            var webMethod = "./MentoreeService.asmx/LoadConnections";
-
-            //jQuery ajax method
-            $.ajax({
-                //post is more secure than get, and allows
-                //us to send big data if we want.  really just
-                //depends on the way the service you're talking to is set up, though
-                type: "POST",
-                //the url is set to the string we created above
-                url: webMethod,
-                //these next two key/value pairs say we intend to talk in JSON format
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                //jQuery sends the data and asynchronously waits for a response.  when it
-                //gets a response, it calls the function mapped to the success key here
-                success: function (msg) {
-                    //the server response is in the msg object passed in to the function here
-                    if (msg.d != null) {
-                        console.log(msg);
-                        createConnections(msg);
-                    }
-                    else {
-                        //server replied false, so let the user know
-                        //the logon failed
-                        window.location.href = "index.aspx";
-                    }
-                },
-                error: function (e) {
-                    //if something goes wrong in the mechanics of delivering the
-                    //message to the server or the server processing that message,
-                    alert("boo...");
-                }
-            });
-        }
 
         function createDom(msg) {
             var obj = JSON.parse(msg.d);
@@ -110,35 +76,35 @@
             var goals = obj[0].Goals.split(",");
             var displayGoal = document.createElement('ul');
 
-           
-            for (i = 0; i < goals.length; i++){
+
+            for (i = 0; i < goals.length; i++) {
                 var goalLi = document.createElement('li');
                 goalLi.appendChild(document.createTextNode(goals[i]));
                 displayGoal.appendChild(goalLi);
             }
-            
+
             $('#goals').append(displayGoal);
 
-           
+
             var skills = obj[0].Skills.split(",");
             var displaySkills = document.createElement('ul');
-            
-            
+
+
             console.log(skillsLi);
-            for (i = 0; i < skills.length; i++){
+            for (i = 0; i < skills.length; i++) {
                 var skillsLi = document.createElement('li');
                 skillsLi.appendChild(document.createTextNode(skills[i]));
                 displaySkills.appendChild(skillsLi);
 
-               
+
             }
             $('#skills').append(displaySkills);
-            
+
 
             var experience = obj[0].Experience.split(",");
             var displayExperience = document.createElement('ul');
 
-           
+
             for (i = 0; i < experience.length; i++) {
                 var experienceLi = document.createElement('li');
                 experienceLi.appendChild(document.createTextNode(experience[i]));
@@ -156,94 +122,9 @@
             Connection();
         }
 
-
-
-        function createConnections(msg) {
-            var obj = JSON.parse(msg.d);
-            console.log(obj);
-            
-
-            for (i = 0; i < obj.length; i++){
-                var card = document.createElement('div');
-                card.setAttribute("class", "card");
-                card.setAttribute("style", "width: 18rem");
-
-                var img = document.createElement('img');
-                img.setAttribute("class", "card-img-top");
-                img.setAttribute('src', './images/sealImage.jpg');
-                img.setAttribute('alt', 'Profile Image');
-
-                var cardBody = document.createElement('div');
-                cardBody.setAttribute('class', 'card-body');
-
-                var cardName = document.createElement('h5');
-                cardName.setAttribute('class', 'card-title');
-
-                cardName.append(obj[i].FirstName + " " + obj[i].LastName);
-
-                var cardButton = document.createElement('button');
-                cardButton.setAttribute('class', 'btn btn-primary');
-                cardButton.setAttribute('onclick', 'newProfile("'+ obj[i].Email +'");');
-
-                cardButton.append("View Profile");
-
-                cardBody.append(cardName);
-                cardBody.append(cardButton);
-
-                card.append(img);
-                card.append(cardBody);
-
-                $('#profileDisplay').append(card);
-
-                
-            }
-        }
-
-        function newProfile(email) {
-            console.log('test');
-            //the url of the webservice we will be talking to
-            var webMethod = "./MentoreeService.asmx/NewProfile";
-            
-            var parameters = "{\"email\":\"" + encodeURI(email) + "\"}";
-
-            //jQuery ajax method
-            $.ajax({
-                //post is more secure than get, and allows
-                //us to send big data if we want.  really just
-                //depends on the way the service you're talking to is set up, though
-                type: "POST",
-                //the url is set to the string we created above
-                url: webMethod,
-                //same with the data
-                data: parameters,
-                //these next two key/value pairs say we intend to talk in JSON format
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                //jQuery sends the data and asynchronously waits for a response.  when it
-                //gets a response, it calls the function mapped to the success key here
-                success: function (msg) {
-                    //the server response is in the msg object passed in to the function here
-
-                    if (msg.d) {
-
-                        window.location.href = "connectionProfile.aspx";
-                    }
-                    else {
-                        //server replied false, so let the user know
-                        //the logon failed
-                        alert("unable to find profile");
-                    }
-                },
-                error: function (e) {
-                    //if something goes wrong in the mechanics of delivering the
-                    //message to the server or the server processing that message,
-                    alert("boo...");
-                }
-            });
-        }
-
-    </script>
+        </script>
 </head>
+
 <body onload="LogOn();">
     <form id="form1" runat="server">
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bgark">
@@ -327,8 +208,6 @@
 
 			</div>
             <div id="profileDisplay" class="container">
-                   <h2>Connections: </h2>
-
         </div>
 		</main>
         
