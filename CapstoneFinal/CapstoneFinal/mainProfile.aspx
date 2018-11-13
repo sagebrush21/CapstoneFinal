@@ -161,11 +161,14 @@
         function createConnections(msg) {
             var obj = JSON.parse(msg.d);
             console.log(obj);
-            
+            var container = document.createElement('div');
+            container.setAttribute('class', 'row');
 
             for (i = 0; i < obj.length; i++){
+                
+
                 var card = document.createElement('div');
-                card.setAttribute("class", "card");
+                card.setAttribute("class", "card mr-5");
                 card.setAttribute("style", "width: 18rem");
 
                 var img = document.createElement('img');
@@ -193,10 +196,15 @@
                 card.append(img);
                 card.append(cardBody);
 
-                $('#profileDisplay').append(card);
+                container.append(card);
+                
 
                 
             }
+
+           
+
+            $('#profileDisplay').append(container);
         }
 
         function newProfile(email) {
