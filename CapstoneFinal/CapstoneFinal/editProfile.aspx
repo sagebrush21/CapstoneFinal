@@ -51,15 +51,103 @@
               });
           }
 
+          function CreateProfile(firstName, lastName, position, cert, city, state, country, avail, experience, skills, goals) {
 
-          function createDom(mgs)
+              //the url of the webservice we will be talking to
+              var webMethod = "./MentoreeService.asmx/EditProfile";
+
+              var parameters = "{\"firstName\":\"" + encodeURI(firstName) + "\",\"lastName\":\"" + encodeURI(lastName) + "\",\"position\":\"" + encodeURI(position) + "\",\"cert\":\"" + encodeURI(cert) + "\",\"city\":\"" + encodeURI(city) + "\",\"state\":\"" + encodeURI(state) + "\",\"country\":\"" + encodeURI(country) + "\",\"avail\":\"" + encodeURI(avail) + "\",\"experience\":\"" + encodeURI(experience) + "\",\"skills\":\"" + encodeURI(skills) + "\",\"goals\":\"" + encodeURI(goals) + "\"}";
+
+              //jQuery ajax method
+              $.ajax({
+                  //post is more secure than get, and allows
+                  //us to send big data if we want.  really just
+                  //depends on the way the service you're talking to is set up, though
+                  type: "POST",
+                  //the url is set to the string we created above
+                  url: webMethod,
+                  //same with the data
+                  data: parameters,
+                  //these next two key/value pairs say we intend to talk in JSON format
+                  contentType: "application/json; charset=utf-8",
+                  dataType: "json",
+                  //jQuery sends the data and asynchronously waits for a response.  when it
+                  //gets a response, it calls the function mapped to the success key here
+                  success: function (msg) {
+                      //the server response is in the msg object passed in to the function here
+
+                      if (msg.d) {
+
+                          window.location.href = "mainProfile.aspx";
+                      }
+                      else {
+                          //server replied false, so let the user know
+                          //the logon failed
+                          alert("profile not found");
+                      }
+                  },
+                  error: function (e) {
+                      //if something goes wrong in the mechanics of delivering the
+                      //message to the server or the server processing that message,
+                      alert("boo...");
+                  }
+              });
+
+          }
+
+          function createDom(msg)
           {
               var obj = JSON.parse(msg.d);
               console.log(obj);
 
-              
+              $('#firstName').attr('value', obj[0].FirstName);
+              $('#lastName').attr('value', obj[0].LastName);
+              $('#position').attr('value', obj[0].CurrentPosition);
+              $('#cert').attr('value', obj[0].Edu_or_cert);
+              $('#city').attr('value', obj[0].UserCity);
+              $('#state').attr('value', obj[0].UserState);
+              $('#country').attr('value', obj[0].UserCountry);
 
+              var experience = obj[0].Experience.split(",");
+
+              for (i = 0; i < experience.length; i++) {
+                  $('#experience'+(i+1)).attr('value', experience[i]);
+              }
+
+              var skills = obj[0].Skills.split(",");
+
+              for (i = 0; i < skills.length; i++) {
+                  $('#skills' + (i + 1)).attr('value', skills[i]);
+              }
+
+              var goals = obj[0].Goals.split(",");
+
+              for (i = 0; i < goals.length; i++) {
+                  $('#goals' + (i + 1)).attr('value', goals[i]);
+              }
+
+
+              $('#availability').attr('value', obj[0].UserAvailability);
           }
+
+          function uploadProfile() {
+              var firstName = $('#firstName').val();
+              var lastName = $('#lastName').val();
+              var position = $('#position').val();
+              var cert = $('#cert').val();
+              var city = $('#city').val();
+              var state = $('#state').val();
+              var country = $('#country').val();
+              var avail = $('#availability').val();
+              var experience = $('#experience1').val() + ',' + $('#experience2').val() + ',' + $('#experience3').val();
+              var skills = $('#skills1').val() + ',' + $('#skills2').val();
+              var goals = $('#goals1').val() + ',' + $('#goals2').val();
+
+              CreateProfile(firstName, lastName, position, cert, city, state, country, avail, experience, skills, goals);
+              
+          }
+
+          
           </script>
 </head>
 <body onload="LoadPage();">
@@ -92,7 +180,7 @@
 	</div>
 	
 	<div id="rightHeader">
-		<form id="basicInfo" action="">
+		<form id="basicInfo">
 			<fieldset>
 				<legend>Basic Information:</legend>
 
@@ -116,62 +204,16 @@
 		<fieldset>
 				<legend>Mentorship Information</legend>
 			<h2>Goals:</h2> 
-			<ul>
-				<li>
-				<select id="goals1" name="Goals1">
-					<option value="blank"></option>
-					<option value="Leadership">Leadership</option>
-					<option value="Management">Management</option>
-					<option value="Technical">Technical</option>
-					<option value="Marketing">Marketing</option>
-					<option value="Sustainability">Sustainability</option>
-					<option value="Consulting">Consulting</option>
-					<option value="Communication">Communication</option>
-				</select>
-				</li>
-				
-				<li>
-				<select id="goals2" name="Goals2">
-					<option value="blank"></option>
-					<option value="Leadership">Leadership</option>
-					<option value="Management">Management</option>
-					<option value="Technical">Technical</option>
-					<option value="Marketing">Marketing</option>
-					<option value="Sustainability">Sustainability</option>
-					<option value="Consulting">Consulting</option>
-					<option value="Communication">Communication</option>
-				</select>
-				</li>
+		<ul>
+				<li><input id="goals1" type="text"></li>
+				<li><input id="goals2" type="text"></li>
 			</ul>
 			
 		<h2>Skills:</h2>
 		<ul>
-			<li>
-			<select id="skills1" name="Skills1">
-				<option value="blank"></option>
-				<option value="Leadership">Leadership</option>
-				<option value="Management">Management</option>
-				<option value="Technical">Technical</option>
-				<option value="Marketing">Marketing</option>
-				<option value="Sustainability">Sustainability</option>
-				<option value="Consulting">Consulting</option>
-				<option value="Communication">Communication</option>
-			</select>
-			</li>
-		
-			<li>
-			<select id="skills2" name="Skills2">
-				<option value="blank"></option>
-				<option value="Leadership">Leadership</option>
-				<option value="Management">Management</option>
-				<option value="Technical">Technical</option>
-				<option value="Marketing">Marketing</option>
-				<option value="Sustainability">Sustainability</option>
-				<option value="Consulting">Consulting</option>
-				<option value="Communication">Communication</option>
-			</select>
-			</li>
-			</ul>
+				<li><input id="skills1" type="text"></li>
+				<li><input id="skills2" type="text"></li>
+		</ul>
 			
 			<h2>Experience:</h2>  
 			<ul>
@@ -186,7 +228,7 @@
 			<input  id="availability"type="text" value="Best times to reach me: ..." name="availability" size ="40">
             <br />
             <br />
-            <button onclick="" class="btn btn-primary">Submit</button>
+            <button onclick="uploadProfile()" class="btn btn-primary">Submit</button>
 		</fieldset>
 
 		</form>

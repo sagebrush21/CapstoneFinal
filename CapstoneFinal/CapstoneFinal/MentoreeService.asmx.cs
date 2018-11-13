@@ -350,5 +350,72 @@ namespace CapstoneFinal
 
 
         }
+
+        [WebMethod(EnableSession = true)]
+        public bool EditProfile(string firstName, string lastName, string position, string cert, string city, string state, string country, string avail, string experience, string skills, string goals)
+        {
+            string searchID = Session["id"].ToString();
+            //again, this is either gonna work or it won't.  We return this flag to let them
+            //know if account creation was successful
+            bool success = false;
+            string sqlConnectString = ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+            //the only thing fancy about this query is SELECT SCOPE_IDENTITY() at the end.  All that
+            //does is tell sql server to return the primary key of the last inserted row.
+            //we want this, because if the account gets created we will automatically
+            //log them on by storing their id in the session.  That's just a design choice.  You could
+            //decide that after they create an account they still have to log on seperately.  Whatevs.
+            string sqlSelect = "UPDATE profileTable Set firstName = @firstName, lastname = @lastName, currentPosition = @position, edu_or_cert = @cert, userCity = @city, userState = @state, userCountry = @country, userAvailability = @avail, experience = @experience, skills = @skills, goals = @goals where userEmail IN (select userEmail from login where userID = "+ searchID +");" ;
+
+
+            SqlConnection sqlConnection = new SqlConnection(sqlConnectString);
+
+            SqlCommand sqlCommand = new SqlCommand(sqlSelect, sqlConnection);
+
+            sqlCommand.Parameters.Add("@firstName", System.Data.SqlDbType.NVarChar);
+            sqlCommand.Parameters["@firstName"].Value = HttpUtility.UrlDecode(firstName);
+            sqlCommand.Parameters.Add("@lastName", System.Data.SqlDbType.NVarChar);
+            sqlCommand.Parameters["@lastName"].Value = HttpUtility.UrlDecode(lastName);
+            sqlCommand.Parameters.Add("@position", System.Data.SqlDbType.NVarChar);
+            sqlCommand.Parameters["@position"].Value = HttpUtility.UrlDecode(position);
+            sqlCommand.Parameters.Add("@cert", System.Data.SqlDbType.NVarChar);
+            sqlCommand.Parameters["@cert"].Value = HttpUtility.UrlDecode(cert);
+            sqlCommand.Parameters.Add("@city", System.Data.SqlDbType.NVarChar);
+            sqlCommand.Parameters["@city"].Value = HttpUtility.UrlDecode(city);
+            sqlCommand.Parameters.Add("@state", System.Data.SqlDbType.NVarChar);
+            sqlCommand.Parameters["@state"].Value = HttpUtility.UrlDecode(state);
+            sqlCommand.Parameters.Add("@country", System.Data.SqlDbType.NVarChar);
+            sqlCommand.Parameters["@country"].Value = HttpUtility.UrlDecode(country);
+            sqlCommand.Parameters.Add("@avail", System.Data.SqlDbType.NVarChar);
+            sqlCommand.Parameters["@avail"].Value = HttpUtility.UrlDecode(avail);
+            sqlCommand.Parameters.Add("@experience", System.Data.SqlDbType.NVarChar);
+            sqlCommand.Parameters["@experience"].Value = HttpUtility.UrlDecode(experience);
+            sqlCommand.Parameters.Add("@skills", System.Data.SqlDbType.NVarChar);
+            sqlCommand.Parameters["@skills"].Value = HttpUtility.UrlDecode(skills);
+            sqlCommand.Parameters.Add("@goals", System.Data.SqlDbType.NVarChar);
+            sqlCommand.Parameters["@goals"].Value = HttpUtility.UrlDecode(goals);
+
+            //this time, we're not using a data adapter to fill a data table.  We're just
+            //opening the connection, telling our command to "executescalar" which says basically
+            //execute the query and just hand me back the number the query returns (the ID, remember?).
+            //don't forget to close the connection!
+            sqlConnection.Open();
+            //we're using a try/catch so that if the query errors out we can handle it gracefully
+            //by closing the connection and moving on
+            try {
+                sqlCommand.ExecuteNonQuery();
+
+                success = true;
+            }
+            catch
+            {
+
+                success = false;
+            }
+            
+
+            sqlConnection.Close();
+
+            return success;
+        }
     }
 }
