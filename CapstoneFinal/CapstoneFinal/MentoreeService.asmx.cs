@@ -138,14 +138,15 @@ namespace CapstoneFinal
 
         [WebMethod(EnableSession = true)]
         public string LoadProfile()
-        {   
+        {
             List<Info> lst = new List<Info>();
             //the only thing fancy about this query is SELECT SCOPE_IDENTITY() at the end.  All that
             //does is tell sql server to return the primary key of the last inserted row.
             //we want this, because if the account gets created we will automatically
             //log them on by storing their id in the session.  That's just a design choice.  You could
             //decide that after they create an account they still have to log on seperately.  Whatevs.
-            try {
+            try
+            {
                 string searchID = Session["id"].ToString();
 
                 SqlConnection con = new SqlConnection();
@@ -199,7 +200,7 @@ namespace CapstoneFinal
             {
                 return null;
             }
-            
+
 
         }
 
@@ -364,7 +365,7 @@ namespace CapstoneFinal
             //we want this, because if the account gets created we will automatically
             //log them on by storing their id in the session.  That's just a design choice.  You could
             //decide that after they create an account they still have to log on seperately.  Whatevs.
-            string sqlSelect = "UPDATE profileTable Set firstName = @firstName, lastname = @lastName, currentPosition = @position, edu_or_cert = @cert, userCity = @city, userState = @state, userCountry = @country, userAvailability = @avail, experience = @experience, skills = @skills, goals = @goals where userEmail IN (select userEmail from login where userID = "+ searchID +");" ;
+            string sqlSelect = "UPDATE profileTable Set firstName = @firstName, lastname = @lastName, currentPosition = @position, edu_or_cert = @cert, userCity = @city, userState = @state, userCountry = @country, userAvailability = @avail, experience = @experience, skills = @skills, goals = @goals where userEmail IN (select userEmail from login where userID = " + searchID + ");";
 
 
             SqlConnection sqlConnection = new SqlConnection(sqlConnectString);
@@ -401,7 +402,8 @@ namespace CapstoneFinal
             sqlConnection.Open();
             //we're using a try/catch so that if the query errors out we can handle it gracefully
             //by closing the connection and moving on
-            try {
+            try
+            {
                 sqlCommand.ExecuteNonQuery();
 
                 success = true;
@@ -411,7 +413,7 @@ namespace CapstoneFinal
 
                 success = false;
             }
-            
+
 
             sqlConnection.Close();
 
@@ -436,7 +438,7 @@ namespace CapstoneFinal
                 con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "Select haveMet from meetings where meetingId IN (select meetingId from bridge_meetings_Profile where userEmail IN (select userEmail from profileTable where userEmail In (select userEmail from login where userId = "+ searchID +"))) And meetingId IN (select meetingId from bridge_meetings_Profile where userEmail = '"+ 1 +"');";
+                cmd.CommandText = "Select haveMet from meetings where meetingId IN (select meetingId from bridge_meetings_Profile where userEmail IN (select userEmail from profileTable where userEmail In (select userEmail from login where userId = " + searchID + "))) And meetingId IN (select meetingId from bridge_meetings_Profile where userEmail = '" + 1 + "');";
                 cmd.Connection = con;
                 SqlDataReader rd = cmd.ExecuteReader();
 
@@ -446,8 +448,9 @@ namespace CapstoneFinal
                 {
                     while (rd.Read())
                     {
-                        try{
-                           int num =  Convert.ToInt32(rd[0]);
+                        try
+                        {
+                            int num = Convert.ToInt32(rd[0]);
                             if (num == 1)
                             {
                                 success = true;
@@ -457,7 +460,7 @@ namespace CapstoneFinal
                         {
                             return success;
                         }
-                       
+
                     }
                 }
                 else
@@ -494,7 +497,7 @@ namespace CapstoneFinal
             SqlConnection sqlConnection = new SqlConnection(sqlConnectString);
 
             SqlCommand sqlCommand = new SqlCommand(sqlSelect, sqlConnection);
-            
+
             sqlCommand.Parameters.Add("@code", System.Data.SqlDbType.NVarChar);
             sqlCommand.Parameters["@code"].Value = HttpUtility.UrlDecode(code);
 
@@ -522,4 +525,5 @@ namespace CapstoneFinal
 
             return success;
         }
+    }
 }

@@ -16,6 +16,7 @@ hr {
     height: 100px;
     overflow: hidden;
     border: 5px solid rgb(173, 216, 230);
+    border-radius: 100%;
     float: left;
     clear:bottom;
 }
