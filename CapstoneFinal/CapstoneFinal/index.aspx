@@ -91,7 +91,7 @@
         }
     </script>
 </head>
-<body onload="LogOff()">
+<body onload="LogOff()" style="background: url('./images/circleBackground2.jpg') no-repeat; background-size: cover">
     <form id="form1" runat="server">
         <div>
             <!-- NAVBAR -->
@@ -99,8 +99,7 @@
     <a class="navbar-brand" href="index.aspx"><img class="brand-image" src="./images/manatee-transparent-background.png" height="30" width="30"/>CoffeeMate</a>
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <span class="navbar-toggler-icon"></span (
 
     <div class="collapse navbar-collapse text-center" id="navbarNavAltMarkup">
         <div class="navbar-nav mr-auto navbar-left font-sz-5">

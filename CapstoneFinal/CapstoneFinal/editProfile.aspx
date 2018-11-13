@@ -150,7 +150,7 @@
           
           </script>
 </head>
-<body onload="LoadPage();">
+<body onload="LoadPage();" style="background: url('./images/circleBackground4.jpg') no-repeat; background-size: cover">
     <form id="form1" runat="server">
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bgark">
     <a class="navbar-brand" href="mainProfile.aspx"><img class="brand-image" src="./images/manatee-transparent-background.png" height="30" width="30"/>Mentoree</a>

@@ -417,5 +417,109 @@ namespace CapstoneFinal
 
             return success;
         }
-    }
+
+        [WebMethod(EnableSession = true)]
+        public bool CheckMeetup()
+        {
+
+            bool success = false;
+            //the only thing fancy about this query is SELECT SCOPE_IDENTITY() at the end.  All that
+            //does is tell sql server to return the primary key of the last inserted row.
+            //we want this, because if the account gets created we will automatically
+            //log them on by storing their id in the session.  That's just a design choice.  You could
+            //decide that after they create an account they still have to log on seperately.  Whatevs.
+            try
+            {
+                string searchID = Session["id"].ToString();
+
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "Select haveMet from meetings where meetingId IN (select meetingId from bridge_meetings_Profile where userEmail IN (select userEmail from profileTable where userEmail In (select userEmail from login where userId = "+ searchID +"))) And meetingId IN (select meetingId from bridge_meetings_Profile where userEmail = '"+ 1 +"');";
+                cmd.Connection = con;
+                SqlDataReader rd = cmd.ExecuteReader();
+
+
+
+                if (rd.HasRows)
+                {
+                    while (rd.Read())
+                    {
+                        try{
+                           int num =  Convert.ToInt32(rd[0]);
+                            if (num == 1)
+                            {
+                                success = true;
+                            }
+                        }
+                        catch
+                        {
+                            return success;
+                        }
+                       
+                    }
+                }
+                else
+                {
+                    return success;
+                }
+            }
+            catch
+            {
+                return success;
+            }
+
+            return success;
+
+
+        }
+
+        [WebMethod(EnableSession = true)]
+        public bool UpdateMatch(string code)
+        {
+            string searchID = Session["id"].ToString();
+            //again, this is either gonna work or it won't.  We return this flag to let them
+            //know if account creation was successful
+            bool success = false;
+            string sqlConnectString = ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+            //the only thing fancy about this query is SELECT SCOPE_IDENTITY() at the end.  All that
+            //does is tell sql server to return the primary key of the last inserted row.
+            //we want this, because if the account gets created we will automatically
+            //log them on by storing their id in the session.  That's just a design choice.  You could
+            //decide that after they create an account they still have to log on seperately.  Whatevs.
+            string sqlSelect = "UPDATE meetings Set haveMet = 1 where meetingID = @code ;";
+
+
+            SqlConnection sqlConnection = new SqlConnection(sqlConnectString);
+
+            SqlCommand sqlCommand = new SqlCommand(sqlSelect, sqlConnection);
+            
+            sqlCommand.Parameters.Add("@code", System.Data.SqlDbType.NVarChar);
+            sqlCommand.Parameters["@code"].Value = HttpUtility.UrlDecode(code);
+
+            //this time, we're not using a data adapter to fill a data table.  We're just
+            //opening the connection, telling our command to "executescalar" which says basically
+            //execute the query and just hand me back the number the query returns (the ID, remember?).
+            //don't forget to close the connection!
+            sqlConnection.Open();
+            //we're using a try/catch so that if the query errors out we can handle it gracefully
+            //by closing the connection and moving on
+            try
+            {
+                sqlCommand.ExecuteNonQuery();
+
+                success = true;
+            }
+            catch
+            {
+
+                success = false;
+            }
+
+
+            sqlConnection.Close();
+
+            return success;
+        }
 }

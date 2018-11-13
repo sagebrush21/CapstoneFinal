@@ -22,7 +22,7 @@
 
     </script>
 </head>
-<body>
+<body style="background: url('./images/circleBackground2.jpg') no-repeat; background-size: cover">
     <form id="form1" runat="server">
         <div>
             <!-- NAVBAR -->

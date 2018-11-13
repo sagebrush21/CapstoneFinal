@@ -78,6 +78,8 @@
     <Content Include="css\ProfilePageStyle.css" />
     <Content Include="css\webCSS.css" />
     <Content Include="editProfile.aspx" />
+    <Content Include="images\circleBackground2.jpg" />
+    <Content Include="images\circleBackground4.jpg" />
     <Content Include="images\coffee.png" />
     <Content Include="images\doodles.png" />
     <Content Include="images\halftone.png" />
