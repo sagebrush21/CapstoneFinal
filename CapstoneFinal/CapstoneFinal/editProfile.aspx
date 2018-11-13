@@ -56,6 +56,9 @@
           {
               var obj = JSON.parse(msg.d);
               console.log(obj);
+
+              
+
           }
           </script>
 </head>

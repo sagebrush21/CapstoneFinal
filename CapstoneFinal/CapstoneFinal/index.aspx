@@ -115,7 +115,7 @@
 <!-- MAIN BODY INFO --> 
 
 <div class="container text-center pt-5 form-signin">
-        <img class="mb-4" src="./images/manatee-transparent-background.png" alt="Mentoree" width="50%">
+        <img class="mb-4" src="./images/MentoreeLogo1.png" alt="Mentoree" width="50%">
     <h1>Please sign in</h1>
 		<br />
 			<asp:TextBox ID="usernameTextBox" runat="server" CssClass="form-control" placeholder="Email Address"></asp:TextBox>

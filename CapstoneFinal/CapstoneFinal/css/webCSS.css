@@ -27,12 +27,12 @@ body {
 }
 
 .bgark {
-    background-color: blue;
+    background-color: #268bd2;
     transition: .5s;
 }
 
 .bg-dark {
-    background-color: blue !important;
+    background-color: #268bd2 !important;
 }
 
 .footer a {
