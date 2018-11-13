@@ -16,7 +16,7 @@
       <script type="text/javascript"> 
           </script>
 </head>
-<body>
+<body style = "background-image: url("./images/woodBackground.png")">
     <form id="form1" runat="server">
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bgark">
     <a class="navbar-brand" href="index.aspx"><img class="brand-image" src="./images/manatee-transparent-background.png" height="30" width="30"/>Mentoree</a>
@@ -39,7 +39,9 @@
     
 </nav>
         <div id="profileImage">
-		<img src=".\images\sealImage.jpg" alt="profileImage">
+
+		<img src=".\images\sealImage.jpg" alt="profileImage" width ="300" height="300">
+
 		<button type="button">Edit Picture</button>
 	</div>
 	
@@ -47,6 +49,7 @@
 		<form id="basicInfo" action="">
 			<fieldset>
 				<legend>Basic Information:</legend>
+
 			<div> First name: <input id="firstName" type="text" name="firstName"> </div>
 			<div> Last name: <input id="lastName" type="text" name="lastName"> </div>
 			<div> Current Position: <input id="position" type="text" name="position"> </div>
@@ -54,6 +57,7 @@
 			<div> City: <input id="city" type="text name="city"> </div>
 			<div> State: <input id="state" type="text name="state"> </div>
 			<div> Country: <input id="country" type="text" name="country"> </div>
+
 			</fieldset>
 		</form>
 	</div>
@@ -131,9 +135,14 @@
 			</ul>
 		
 			<h2>Availability:</h2> 
-			<input id="availability" type="text" value="Best times to reach me: ..." name="availability">
-		</fieldset>
+
+            
+			<input  id="availability"type="text" value="Best times to reach me: ..." name="availability" size ="40">
+            <br />
+            <br />
             <button onclick="" class="btn btn-primary">Submit</button>
+		</fieldset>
+
 		</form>
 	</div>
 		<footer class="footer bg-dark">
