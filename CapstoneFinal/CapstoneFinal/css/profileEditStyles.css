@@ -8,34 +8,31 @@
 	overflow: hidden;
 }
 
-#rightHeader
-{
-	width: 60%;
-	float: right;
-	height: 320px;
-	text-align: left;
-	font-size:  large;
-	overflow: auto;
-
+#rightHeader {
+    width: 60%;
+    height: 320px;
+    text-align: center;
+    font-size: large;
+    overflow: auto;
 }
 
-#basicInfo.div
-{
-	clear: left;
+#basicInfo.div {
+    clear: left;
+    overflow: auto;
 }
 
-#profileInfo
-{
-	width: 100%;
-	text-align: left;
-
+#profileInfo {
+    width: 100%;
+    text-align: left;
+    overflow: auto;
 }
 
 
-body
-{
-	margin: auto;
-	background-image: url("../images/woodBackground.png");
+body {
+    margin: auto;
+    background-image: url("../images/woodBackground.png");
+   
+    background-size: cover;
 }
 
 input
