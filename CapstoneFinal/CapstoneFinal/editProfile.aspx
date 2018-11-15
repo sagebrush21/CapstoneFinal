@@ -172,6 +172,7 @@
     </div>
     
 </nav>
+    <div class="container pt-5">
         <div id="profileImage">
 
 		<img src=".\images\sealImage.jpg" alt="profileImage" width ="300" height="300">
@@ -233,6 +234,7 @@
 
 		</form>
 	</div>
+</div>
 		<footer class="footer bg-dark">
             <div class="container  w-100 h-100">
                    <div class="row">
