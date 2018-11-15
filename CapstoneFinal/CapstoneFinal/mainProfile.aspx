@@ -93,16 +93,20 @@
             console.log(obj);
 
             var name = document.createElement('h1');
+            var email = document.createElement('h6');
             var position = document.createElement('h6');
             var cert = document.createElement('h6');
             var city = document.createElement('h6');
 
+            email.append(obj[0].Email);
             name.append(obj[0].FirstName + " " + obj[0].LastName);
             position.append(obj[0].CurrentPosition);
             cert.append(obj[0].Edu_or_cert);
             city.append(obj[0].UserCity);
 
+           
             $("#rightHeader").append(name);
+            $("#rightHeader").append(email);
             $("#rightHeader").append(position);
             $("#rightHeader").append(cert);
             $("#rightHeader").append(city);
