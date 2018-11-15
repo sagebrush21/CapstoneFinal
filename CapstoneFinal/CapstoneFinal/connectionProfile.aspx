@@ -206,6 +206,11 @@
 					<!--<p>M-F at 12-2pm or Weekends from 3-6pm.</p>-->
 				</div>
 
+                <div id="code" class="container">
+                    <h2>Enter user code here</h2>
+                        <input type="text" name="code"/>
+                        <button class="btn btn-primary">Submit</button>
+                </div>
 			</div>
             <div id="profileDisplay" class="container">
                 

@@ -78,6 +78,7 @@
     <Content Include="css\ProfilePageStyle.css" />
     <Content Include="css\webCSS.css" />
     <Content Include="editProfile.aspx" />
+    <Content Include="images\check.png" />
     <Content Include="images\circleBackground2.jpg" />
     <Content Include="images\circleBackground4.jpg" />
     <Content Include="images\coffee.png" />
@@ -93,6 +94,7 @@
     <Content Include="images\profilePic2.jpg" />
     <Content Include="images\profilePic3.jpg" />
     <Content Include="images\profilePic4.JPG" />
+    <Content Include="images\redX.png" />
     <Content Include="images\sealImage.jpg" />
     <Content Include="images\wheat.png" />
     <Content Include="images\woodBackground.png" />
