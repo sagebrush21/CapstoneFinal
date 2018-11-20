@@ -20,9 +20,6 @@
 
               //jQuery ajax method
               $.ajax({
-                  //post is more secure than get, and allows
-                  //us to send big data if we want.  really just
-                  //depends on the way the service you're talking to is set up, though
                   type: "POST",
                   //the url is set to the string we created above
                   url: webMethod,
@@ -94,12 +91,12 @@
               });
 
           }
-
+          // Uploades data from ajax call into the DOM
           function createDom(msg)
           {
               var obj = JSON.parse(msg.d);
               console.log(obj);
-
+              //Sets values for input based on values pulled form database
               $('#firstName').attr('value', obj[0].FirstName);
               $('#lastName').attr('value', obj[0].LastName);
               $('#position').attr('value', obj[0].CurrentPosition);
@@ -108,6 +105,7 @@
               $('#state').attr('value', obj[0].UserState);
               $('#country').attr('value', obj[0].UserCountry);
 
+              // splits comma delimeted strings and sets values based on each string
               var experience = obj[0].Experience.split(",");
 
               for (i = 0; i < experience.length; i++) {
@@ -129,7 +127,7 @@
 
               $('#availability').attr('value', obj[0].UserAvailability);
           }
-
+          //takes values in input boxes and posts them to database
           function uploadProfile() {
               var firstName = $('#firstName').val();
               var lastName = $('#lastName').val();
@@ -152,6 +150,8 @@
 </head>
 <body onload="LoadPage();" style="background: url('./images/circleBackground4.jpg') no-repeat; background-size: cover">
     <form id="form1" runat="server">
+
+        <!-- Navbar -->
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bgark">
     <a class="navbar-brand" href="mainProfile.aspx"><img class="brand-image" src="./images/manatee-transparent-background.png" height="30" width="30"/>Mentoree</a>
     
@@ -172,6 +172,8 @@
     </div>
     
 </nav>
+
+    <!-- Main dom -->
     <div class="container pt-5">
         <div id="profileImage">
 
