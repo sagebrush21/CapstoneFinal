@@ -12,7 +12,11 @@
     <link href = "./css/profileEditStyles.css" type = "text/css" rel= "stylesheet"/>
     <link rel="stylesheet" href="./css/bootstrap.css"/>
     <link rel="stylesheet" href="./css/webCSS.css"/>
-
+    <style>
+        input {
+            border-radius: 5px;
+        }
+    </style>
       <script type="text/javascript"> 
           function LoadPage() {
               //the url of the webservice we will be talking to
@@ -180,97 +184,97 @@
 		<img src=".\images\sealImage.jpg" alt="profileImage" width ="300" height="300">
 
 		<button type="button">Edit Picture</button>
-	</div>
+	    </div>
 	
-	<div id="rightHeader">
-		<form id="basicInfo">
-			<fieldset>
-				<legend>Basic Information:</legend>
+	    <div id="rightHeader">
+		    <form id="basicInfo">
+			    <fieldset>
+				    <legend>Basic Information:</legend>
 
-			<div> First name: <input id="firstName" type="text" name="firstName" /> </div>
-			<div> Last name: <input id="lastName" type="text" name="lastName" /> </div>
-			<div> Current Position: <input id="position" type="text" name="position" /> </div>
-			<div> Certification: <input id="cert" type="text" name="cert" /> </div>
-			<div> City: <input id="city" type="text" name="city" /> </div>
-			<div> State: <input id="state" type="text" name="state" /> </div>
-			<div> Country: <input id="country" type="text" name="country" /> </div>
+			    <div> First name: <input id="firstName" type="text" name="firstName" /> </div>
+			    <div> Last name: <input id="lastName" type="text" name="lastName" /> </div>
+			    <div> Current Position: <input id="position" type="text" name="position" /> </div>
+			    <div> Certification: <input id="cert" type="text" name="cert" /> </div>
+			    <div> City: <input id="city" type="text" name="city" /> </div>
+			    <div> State: <input id="state" type="text" name="state" /> </div>
+			    <div> Country: <input id="country" type="text" name="country" /> </div>
 
-			</fieldset>
-		</form>
-	</div>
+			    </fieldset>
+		    </form>
+	    </div>
 	
-	<div id="profileInfo">
+	    <div id="profileInfo">
 
-		<hr/>
-		<form>
-		<fieldset>
-				<legend>Mentorship Information</legend>
-			<h2>Goals:</h2> 
-		<ul>
-				<li>
-                    <input id="goals1" type="text" list="goalsList1" />
-                        <datalist id="goalsList1">
-                            <option>Increase Productivity</option>
-                            <option>Create Networks</option>
-                            <option>Learn new skills</option>
-                            <option>Increase effectiveness</option>
-                            <option>Distribute knowledge</option>
-                        </datalist>
-				</li>
-				<li>
-                    <input id="goals2" type="text"list="goalsList2" />
-                        <datalist id="goalsList2">
-                            <option>Increase Productivity</option>
-                            <option>Create Networks</option>
-                            <option>Learn new skills</option>
-                            <option>Increase effectiveness</option>
-                            <option>Distribute knowledge</option>
-                        </datalist>
+		    <hr/>
+		    <form>
+		    <fieldset>
+				    <legend>Mentorship Information</legend>
+			    <h2>Goals:</h2> 
+		    <ul>
+				    <li>
+                        <input id="goals1" type="text" list="goalsList1" />
+                            <datalist id="goalsList1">
+                                <option>Increase Productivity</option>
+                                <option>Create Networks</option>
+                                <option>Learn new skills</option>
+                                <option>Increase effectiveness</option>
+                                <option>Distribute knowledge</option>
+                            </datalist>
+				    </li>
+				    <li>
+                        <input id="goals2" type="text"list="goalsList2" />
+                            <datalist id="goalsList2">
+                                <option>Increase Productivity</option>
+                                <option>Create Networks</option>
+                                <option>Learn new skills</option>
+                                <option>Increase effectiveness</option>
+                                <option>Distribute knowledge</option>
+                            </datalist>
 
-				</li>
-			</ul>
+				    </li>
+			    </ul>
 			
-		<h2>Skills:</h2>
-        <ul>
-		    <li>
-                <input id="skills1" type="text" list="skillsList1" />
-                    <datalist id="skillsList1">
-                        <option>Data Analysis</option>
-                        <option>Communication</option>
-                        <option>Decision Making</option>
-                        <option>Leadership</option>
-                        <option>Teamwork</option>
-                    </datalist>
-            </li>
-		    <li>
-                <input id="skills2" type="text" list="skillsList2" />
-                    <datalist id="skillsList2">
-                        <option>Data Analysis</option>
-                        <option>Communication</option>
-                        <option>Decision Making</option>
-                        <option>Leadership</option>
-                        <option>Teamwork</option>
-                    </datalist>
-		    </li>
-        </ul>	
-			<h2>Experience:</h2>  
-			<ul>
-				<li><input id="experience1" type="text" /></li>
-				<li><input id="experience2" type="text" /></li>
-				<li><input id="experience3" type="text" /></li>
-			</ul>
+		    <h2>Skills:</h2>
+            <ul>
+		        <li>
+                    <input id="skills1" type="text" list="skillsList1" />
+                        <datalist id="skillsList1">
+                            <option>Data Analysis</option>
+                            <option>Communication</option>
+                            <option>Decision Making</option>
+                            <option>Leadership</option>
+                            <option>Teamwork</option>
+                        </datalist>
+                </li>
+		        <li>
+                    <input id="skills2" type="text" list="skillsList2" />
+                        <datalist id="skillsList2">
+                            <option>Data Analysis</option>
+                            <option>Communication</option>
+                            <option>Decision Making</option>
+                            <option>Leadership</option>
+                            <option>Teamwork</option>
+                        </datalist>
+		        </li>
+            </ul>	
+			    <h2>Experience:</h2>  
+			    <ul>
+				    <li><input id="experience1" type="text" /></li>
+				    <li><input id="experience2" type="text" /></li>
+				    <li><input id="experience3" type="text" /></li>
+			    </ul>
 		
-			<h2>Availability:</h2> 
+			    <h2>Availability:</h2> 
 
             
-			<input  id="availability"type="text" value="Best times to reach me: ..." name="availability" />
-            <br />
-            <br />
-            <button onclick="uploadProfile()" class="btn btn-primary">Submit</button>
-		</fieldset>
+			    <input  id="availability"type="text" value="Best times to reach me: ..." name="availability" />
+                <br />
+                <br />
+                <button onclick="uploadProfile()" class="btn btn-primary">Submit</button>
+		    </fieldset>
 
-		</form>
-	</div>
+		    </form>
+	    </div>
 </div>
         <!-- Footer -->
 		<footer class="footer bg-dark">
