@@ -152,7 +152,7 @@
           
           </script>
 </head>
-<body onload="LoadPage();" style="background: url('./images/whitediamond.png') no-repeat; background-size: cover">
+<body onload="LoadPage();" style="background: url('./images/polaroid.png') no-repeat; background-size: cover">
     <form id="form1" runat="server">
 
         <!-- Navbar -->
