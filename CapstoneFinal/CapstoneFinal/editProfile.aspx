@@ -191,8 +191,8 @@
 			<div> Last name: <input id="lastName" type="text" name="lastName"> </div>
 			<div> Current Position: <input id="position" type="text" name="position"> </div>
 			<div> Certification: <input id="cert" type="text" name="cert"> </div>
-			<div> City: <input id="city" type="text name="city"> </div>
-			<div> State: <input id="state" type="text name="state"> </div>
+			<div> City: <input id="city" type="text" name="city"> </div>
+			<div> State: <input id="state" type="text" name="state"> </div>
 			<div> Country: <input id="country" type="text" name="country"> </div>
 
 			</fieldset>
@@ -201,9 +201,8 @@
 	
 	<div id="profileInfo">
 
-		<hr align="center" width="90%" size="1px" color="maroon">
-
-		<form action="">
+		<hr/>
+		<form>
 		<fieldset>
 				<legend>Mentorship Information</legend>
 			<h2>Goals:</h2> 
@@ -256,15 +255,15 @@
         </ul>	
 			<h2>Experience:</h2>  
 			<ul>
-				<li><input id="experience1" type="text"></li>
-				<li><input id="experience2" type="text"></li>
-				<li><input id="experience3" type="text"></li>
+				<li><input id="experience1" type="text" /></li>
+				<li><input id="experience2" type="text" /></li>
+				<li><input id="experience3" type="text" /></li>
 			</ul>
 		
 			<h2>Availability:</h2> 
 
             
-			<input  id="availability"type="text" value="Best times to reach me: ..." name="availability" size ="40">
+			<input  id="availability"type="text" value="Best times to reach me: ..." name="availability" />
             <br />
             <br />
             <button onclick="uploadProfile()" class="btn btn-primary">Submit</button>
@@ -273,6 +272,7 @@
 		</form>
 	</div>
 </div>
+        <!-- Footer -->
 		<footer class="footer bg-dark">
             <div class="container  w-100 h-100">
                    <div class="row">
