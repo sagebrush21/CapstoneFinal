@@ -97,6 +97,7 @@
     <Content Include="images\redX.png" />
     <Content Include="images\sealImage.jpg" />
     <Content Include="images\wheat.png" />
+    <Content Include="images\whitediamond.png" />
     <Content Include="images\woodBackground.png" />
     <Content Include="images\wov.png" />
     <Content Include="js\calendarPageScript.js" />

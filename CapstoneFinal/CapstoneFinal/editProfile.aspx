@@ -148,7 +148,7 @@
           
           </script>
 </head>
-<body onload="LoadPage();" style="background: url('./images/circleBackground4.jpg') no-repeat; background-size: cover">
+<body onload="LoadPage();" style="background: url('./images/whitediamond.png') no-repeat; background-size: cover">
     <form id="form1" runat="server">
 
         <!-- Navbar -->
@@ -187,13 +187,13 @@
 			<fieldset>
 				<legend>Basic Information:</legend>
 
-			<div> First name: <input id="firstName" type="text" name="firstName"> </div>
-			<div> Last name: <input id="lastName" type="text" name="lastName"> </div>
-			<div> Current Position: <input id="position" type="text" name="position"> </div>
-			<div> Certification: <input id="cert" type="text" name="cert"> </div>
-			<div> City: <input id="city" type="text" name="city"> </div>
-			<div> State: <input id="state" type="text" name="state"> </div>
-			<div> Country: <input id="country" type="text" name="country"> </div>
+			<div> First name: <input id="firstName" type="text" name="firstName" /> </div>
+			<div> Last name: <input id="lastName" type="text" name="lastName" /> </div>
+			<div> Current Position: <input id="position" type="text" name="position" /> </div>
+			<div> Certification: <input id="cert" type="text" name="cert" /> </div>
+			<div> City: <input id="city" type="text" name="city" /> </div>
+			<div> State: <input id="state" type="text" name="state" /> </div>
+			<div> Country: <input id="country" type="text" name="country" /> </div>
 
 			</fieldset>
 		</form>
