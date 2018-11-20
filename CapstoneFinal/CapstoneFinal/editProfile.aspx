@@ -117,13 +117,13 @@
               var skills = obj[0].Skills.split(",");
 
               for (i = 0; i < skills.length; i++) {
-                  $('#skills' + (i + 1)).attr('value', skills[i]);
+                  $('#skills' + (i + 1)).val(skills[i]);
               }
 
               var goals = obj[0].Goals.split(",");
 
               for (i = 0; i < goals.length; i++) {
-                  $('#goals' + (i + 1)).attr('value', goals[i]);
+                  $('#goals' + (i + 1)).val(goals[i]);
               }
 
 
@@ -206,16 +206,52 @@
 				<legend>Mentorship Information</legend>
 			<h2>Goals:</h2> 
 		<ul>
-				<li><input id="goals1" type="text"></li>
-				<li><input id="goals2" type="text"></li>
+				<li>
+                    <input id="goals1" type="text" list="goalsList1" />
+                        <datalist id="goalsList1">
+                            <option>Increase Productivity</option>
+                            <option>Create Networks</option>
+                            <option>Learn new skills</option>
+                            <option>Increase effectiveness</option>
+                            <option>Distribute knowledge</option>
+                        </datalist>
+				</li>
+				<li>
+                    <input id="goals2" type="text"list="goalsList2" />
+                        <datalist id="goalsList2">
+                            <option>Increase Productivity</option>
+                            <option>Create Networks</option>
+                            <option>Learn new skills</option>
+                            <option>Increase effectiveness</option>
+                            <option>Distribute knowledge</option>
+                        </datalist>
+
+				</li>
 			</ul>
 			
 		<h2>Skills:</h2>
-		<ul>
-				<li><input id="skills1" type="text"></li>
-				<li><input id="skills2" type="text"></li>
-		</ul>
-			
+        <ul>
+		    <li>
+                <input id="skills1" type="text" list="skillsList1" />
+                    <datalist id="skillsList1">
+                        <option>Data Analysis</option>
+                        <option>Communication</option>
+                        <option>Decision Making</option>
+                        <option>Leadership</option>
+                        <option>Teamwork</option>
+                    </datalist>
+            </li>
+		    <li>
+                <input id="skills2" type="text" list="skillsList2" />
+                    <datalist id="skillsList2">
+                        <option>Data Analysis</option>
+                        <option>Communication</option>
+                        <option>Decision Making</option>
+                        <option>Leadership</option>
+                        <option>Teamwork</option>
+                    </datalist>
+		    </li>
+        </ul>	
 			<h2>Experience:</h2>  
 			<ul>
 				<li><input id="experience1" type="text"></li>
