@@ -53,6 +53,127 @@
             });
         }
 
+        function Connection() {
+            //the url of the webservice we will be talking to
+            var webMethod = "./MentoreeService.asmx/LoadNewConnections";
+
+            //jQuery ajax method
+            $.ajax({
+                //post is more secure than get, and allows
+                //us to send big data if we want.  really just
+                //depends on the way the service you're talking to is set up, though
+                type: "POST",
+                //the url is set to the string we created above
+                url: webMethod,
+                //these next two key/value pairs say we intend to talk in JSON format
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                //jQuery sends the data and asynchronously waits for a response.  when it
+                //gets a response, it calls the function mapped to the success key here
+                success: function (msg) {
+                    //the server response is in the msg object passed in to the function here
+                    if (msg.d != null) {
+                        console.log(msg);
+                        createConnections(msg);
+                    }
+                    else {
+                        //server replied false, so let the user know
+                        //the logon failed
+
+                    }
+                },
+                error: function (e) {
+                    //if something goes wrong in the mechanics of delivering the
+                    //message to the server or the server processing that message,
+                    alert("boo...");
+                }
+            });
+        }
+
+        function newProfile(email) {
+            //the url of the webservice we will be talking to
+            var webMethod = "./MentoreeService.asmx/NewProfile";
+
+            var parameters = "{\"email\":\"" + encodeURI(email) + "\"}";
+
+            //jQuery ajax method
+            $.ajax({
+                //post is more secure than get, and allows
+                //us to send big data if we want.  really just
+                //depends on the way the service you're talking to is set up, though
+                type: "POST",
+                //the url is set to the string we created above
+                url: webMethod,
+                //same with the data
+                data: parameters,
+                //these next two key/value pairs say we intend to talk in JSON format
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                //jQuery sends the data and asynchronously waits for a response.  when it
+                //gets a response, it calls the function mapped to the success key here
+                success: function (msg) {
+                    //the server response is in the msg object passed in to the function here
+
+                    if (msg.d) {
+
+                        Connection();
+                    }
+                    else {
+                        //server replied false, so let the user know
+                        //the logon failed
+                       
+                    }
+                },
+                error: function (e) {
+                    //if something goes wrong in the mechanics of delivering the
+                    //message to the server or the server processing that message,
+                    alert("boo...");
+                }
+            });
+        }
+
+        function newProfileLoad(email) {
+            //the url of the webservice we will be talking to
+            var webMethod = "./MentoreeService.asmx/NewProfile";
+
+            var parameters = "{\"email\":\"" + encodeURI(email) + "\"}";
+
+            //jQuery ajax method
+            $.ajax({
+                //post is more secure than get, and allows
+                //us to send big data if we want.  really just
+                //depends on the way the service you're talking to is set up, though
+                type: "POST",
+                //the url is set to the string we created above
+                url: webMethod,
+                //same with the data
+                data: parameters,
+                //these next two key/value pairs say we intend to talk in JSON format
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                //jQuery sends the data and asynchronously waits for a response.  when it
+                //gets a response, it calls the function mapped to the success key here
+                success: function (msg) {
+                    //the server response is in the msg object passed in to the function here
+
+                    if (msg.d) {
+
+                        window.location.href = "connectionProfile.aspx";
+                    }
+                    else {
+                        //server replied false, so let the user know
+                        //the logon failed
+                        alert("unable to find profile");
+                    }
+                },
+                error: function (e) {
+                    //if something goes wrong in the mechanics of delivering the
+                    //message to the server or the server processing that message,
+                    alert("boo...");
+                }
+            });
+        }
+
 
         function createDom(msg) {
             var obj = JSON.parse(msg.d);
@@ -123,7 +244,62 @@
 
             $("#times").append(times);
 
-            Connection();
+            newProfile(obj[0].Email);
+        }
+
+        function createConnections(msg) {
+            var obj = JSON.parse(msg.d);
+            console.log(obj);
+            var container = document.createElement('div');
+            container.setAttribute('class', 'row');
+
+            for (i = 0; i < obj.length; i++) {
+
+
+                var card = document.createElement('div');
+                card.setAttribute("class", "card mr-5");
+                card.setAttribute("style", "width: 18rem");
+
+                var img = document.createElement('img');
+                img.setAttribute("class", "card-img-top");
+                img.setAttribute('src', './images/sealImage.jpg');
+                img.setAttribute('alt', 'Profile Image');
+
+                var cardBody = document.createElement('div');
+                cardBody.setAttribute('class', 'card-body');
+
+                var cardName = document.createElement('h5');
+                cardName.setAttribute('class', 'card-title');
+
+                var haveMet = document.createElement('img');
+                haveMet.setAttribute('src', './images/redX.png');
+                haveMet.setAttribute('width', '25px');
+                haveMet.setAttribute('height', '25px');
+
+                cardName.append(obj[i].FirstName + " " + obj[i].LastName);
+
+                var cardButton = document.createElement('button');
+                cardButton.setAttribute('class', 'btn btn-primary');
+                cardButton.setAttribute('onclick', 'newProfileLoad("' + obj[i].Email + '");');
+
+                cardButton.append("View Profile");
+
+                cardName.append(haveMet);
+                cardBody.append(cardName);
+                cardBody.append(cardButton);
+
+                card.append(img);
+                card.append(cardBody);
+
+                container.append(card);
+
+
+
+            }
+
+
+
+            $('#profileDisplay').append(container);
         }
 
         </script>
@@ -217,7 +393,7 @@
                 </div>
 			</div>
             <div id="profileDisplay" class="container">
-                
+                <h2>Connections: </h2>
         </div>
 		</main>
         
