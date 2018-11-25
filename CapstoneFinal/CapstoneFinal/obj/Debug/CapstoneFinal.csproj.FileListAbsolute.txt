@@ -172,3 +172,20 @@ C:\Users\Haozheng Yu\Source\Repos\sagebrush21\CapstoneFinal\CapstoneFinal\Capsto
 C:\Users\Haozheng Yu\Source\Repos\sagebrush21\CapstoneFinal\CapstoneFinal\CapstoneFinal\obj\Debug\CapstoneFinal.csproj.CoreCompileInputs.cache
 C:\Users\Haozheng Yu\Source\Repos\sagebrush21\CapstoneFinal\CapstoneFinal\CapstoneFinal\obj\Debug\CapstoneFinal.dll
 C:\Users\Haozheng Yu\Source\Repos\sagebrush21\CapstoneFinal\CapstoneFinal\CapstoneFinal\obj\Debug\CapstoneFinal.pdb
+C:\Users\Tony\source\repos\CapstoneFinal\CapstoneFinal\CapstoneFinal\bin\credentials.json
+C:\Users\Tony\source\repos\CapstoneFinal\CapstoneFinal\CapstoneFinal\bin\Google.Apis.Auth.dll
+C:\Users\Tony\source\repos\CapstoneFinal\CapstoneFinal\CapstoneFinal\bin\Google.Apis.Auth.PlatformServices.dll
+C:\Users\Tony\source\repos\CapstoneFinal\CapstoneFinal\CapstoneFinal\bin\Google.Apis.Calendar.v3.dll
+C:\Users\Tony\source\repos\CapstoneFinal\CapstoneFinal\CapstoneFinal\bin\Google.Apis.Core.dll
+C:\Users\Tony\source\repos\CapstoneFinal\CapstoneFinal\CapstoneFinal\bin\Google.Apis.dll
+C:\Users\Tony\source\repos\CapstoneFinal\CapstoneFinal\CapstoneFinal\bin\Google.Apis.PlatformServices.dll
+C:\Users\Tony\source\repos\CapstoneFinal\CapstoneFinal\CapstoneFinal\bin\Newtonsoft.Json.dll
+C:\Users\Tony\source\repos\CapstoneFinal\CapstoneFinal\CapstoneFinal\bin\Google.Apis.pdb
+C:\Users\Tony\source\repos\CapstoneFinal\CapstoneFinal\CapstoneFinal\bin\Google.Apis.xml
+C:\Users\Tony\source\repos\CapstoneFinal\CapstoneFinal\CapstoneFinal\bin\Google.Apis.Auth.pdb
+C:\Users\Tony\source\repos\CapstoneFinal\CapstoneFinal\CapstoneFinal\bin\Google.Apis.Auth.xml
+C:\Users\Tony\source\repos\CapstoneFinal\CapstoneFinal\CapstoneFinal\bin\Google.Apis.Calendar.v3.pdb
+C:\Users\Tony\source\repos\CapstoneFinal\CapstoneFinal\CapstoneFinal\bin\Google.Apis.Calendar.v3.xml
+C:\Users\Tony\source\repos\CapstoneFinal\CapstoneFinal\CapstoneFinal\bin\Google.Apis.Core.pdb
+C:\Users\Tony\source\repos\CapstoneFinal\CapstoneFinal\CapstoneFinal\bin\Google.Apis.Core.xml
+C:\Users\Tony\source\repos\CapstoneFinal\CapstoneFinal\CapstoneFinal\bin\Newtonsoft.Json.xml
