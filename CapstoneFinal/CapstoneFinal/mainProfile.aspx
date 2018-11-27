@@ -13,6 +13,46 @@
     <link rel="stylesheet" href="./css/bootstrap.css"/>
     <link rel="stylesheet" href="./css/webCSS.css"/>
 
+    <style>
+        .profilePic {
+            border-radius: 100%;
+            float: left;
+            z-index: 3;
+            position: relative;
+            box-shadow: 2px 1px 8px 0px #000000;
+        }
+       
+        #rightHeader {
+            width: 85%;
+            height: 250px;
+            text-align: left;
+            overflow: auto;
+            float: left;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            background-color: #bfe5ff;
+            margin-left: -200px;
+            padding-left: 220px;
+            z-index: 2;
+        }
+
+        #leftHeader {
+            height: 320px;
+            text-align: center;
+            overflow: auto;
+            float: left;
+            padding-right: 10px;
+            padding-left: 10px;
+            z-index: 200;
+
+        }
+
+        .nameTitle {
+            margin-bottom: 30px;
+        }
+
+    </style>
+
     <script type="text/javascript"> 
         function LogOn() {
             //the url of the webservice we will be talking to
@@ -97,6 +137,8 @@
             var position = document.createElement('h6');
             var cert = document.createElement('h6');
             var city = document.createElement('h6');
+
+            name.setAttribute('class', 'nameTitle')
 
             email.append(obj[0].Email);
             name.append(obj[0].FirstName + " " + obj[0].LastName);
@@ -287,7 +329,7 @@
         <header >
 		<div>
 			<div id = "leftHeader"> 
-				<img src = "./images/sealImage.jpg" alt = "Profile Image" width="300" height="300">
+				<img src = "./images/sealImage.jpg" alt="Profile Image" width="300" height="300" class="profilePic" />
 			</div>
 
 			<div id = "rightHeader">
