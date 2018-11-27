@@ -369,6 +369,28 @@ namespace CapstoneFinal
                                     if (nameMatch != true)
                                     {
                                         success = true;
+                                        string meetingID;
+                                        string fixID;
+
+                                        con = new SqlConnection();
+                                        con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
+                                        con.Open();
+                                        cmd = new SqlCommand();
+                                        cmd.CommandText = "Select MAX(meetingID) from meetings";
+                                        cmd.Connection = con;
+                                        rd = cmd.ExecuteReader();
+
+                                        if (rd.HasRows)
+                                        {
+                                            while (rd.Read())
+                                            {
+                                                meetingID = rd[0].ToString().Trim() ?? "";
+                                                fixID = "M" + (Convert.ToInt32(meetingID.Replace("M", "")) + 1).ToString().PadLeft(5, '0');
+                                            }
+                                        }
+
+
+                                        string date = DateTime.Today.AddMonths(2).ToString("yyyy-MM-dd");
 
                                         tmpList.Remove(s);
                                         tmpList.Remove(tmpEmail);
