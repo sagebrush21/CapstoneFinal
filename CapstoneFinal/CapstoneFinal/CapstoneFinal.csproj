@@ -197,6 +197,7 @@
     <Content Include="js\popper-utils.js.map" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddConnection.cs" />
     <Compile Include="calendar.aspx.cs">
       <DependentUpon>calendar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
