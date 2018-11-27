@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="./css/webCSS.css"/>
 
     <style>
-        .profilePic {
+      /*  .profilePic {
             border-radius: 100%;
             float: left;
             z-index: 3;
@@ -50,7 +50,7 @@
         .nameTitle {
             margin-bottom: 30px;
         }
-
+          */
     </style>
 
     <script type="text/javascript"> 

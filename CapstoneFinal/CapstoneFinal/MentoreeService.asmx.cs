@@ -96,7 +96,7 @@ namespace CapstoneFinal
             //decide that after they create an account they still have to log on seperately.  Whatevs.
             string sqlSelect = "insert into login (userEmail, userPassword) " +
                 "values(@email, @password)SELECT SCOPE_IDENTITY();";
-            string sqlSelect2 = "inster into profileTable (userEmail)" + "values(@email)";
+            string sqlSelect2 = "insert into profileTable (userEmail)" + "values(@email)";
 
 
             SqlConnection sqlConnection = new SqlConnection(sqlConnectString);
@@ -369,8 +369,9 @@ namespace CapstoneFinal
                                     if (nameMatch != true)
                                     {
                                         success = true;
+
                                         string meetingID;
-                                        string fixID;
+                                        string fixID = "";
 
                                         con = new SqlConnection();
                                         con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
@@ -389,8 +390,38 @@ namespace CapstoneFinal
                                             }
                                         }
 
-
                                         string date = DateTime.Today.AddMonths(2).ToString("yyyy-MM-dd");
+
+                                        string sqlSelect = "insert into meetings (meetingID, meetingDate) " + "values(@id, @date);";
+
+                                        string sqlSelect2 = "insert into bridge_Meetings_Profile (meetingID, userEmail)" + "values(@id, @email);";
+
+                                        string sqlSelect3 = "insert into bridge_Meetings_Profile (meetingID, userEmail)" + "values(@id, @email);";
+
+                                        string sqlConnectString = ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+
+                                        SqlConnection sqlConnection = new SqlConnection(sqlConnectString);
+
+                                        SqlCommand sqlCommand = new SqlCommand(sqlSelect, sqlConnection);
+
+                                        sqlCommand.Parameters.Add("@id", System.Data.SqlDbType.NVarChar);
+                                        sqlCommand.Parameters["@id"].Value = HttpUtility.UrlDecode(fixID);
+                                        sqlCommand.Parameters.Add("@date", System.Data.SqlDbType.NVarChar);
+                                        sqlCommand.Parameters["@date"].Value = HttpUtility.UrlDecode(date);
+
+                                        SqlCommand sqlCommand2 = new SqlCommand(sqlSelect2, sqlConnection);
+
+                                        sqlCommand.Parameters.Add("@id", System.Data.SqlDbType.NVarChar);
+                                        sqlCommand.Parameters["@id"].Value = HttpUtility.UrlDecode(fixID);
+                                        sqlCommand.Parameters.Add("@date", System.Data.SqlDbType.NVarChar);
+                                        sqlCommand.Parameters["@date"].Value = HttpUtility.UrlDecode(s);
+
+                                        SqlCommand sqlCommand3 = new SqlCommand(sqlSelect3, sqlConnection);
+
+                                        sqlCommand.Parameters.Add("@id", System.Data.SqlDbType.NVarChar);
+                                        sqlCommand.Parameters["@id"].Value = HttpUtility.UrlDecode(fixID);
+                                        sqlCommand.Parameters.Add("@date", System.Data.SqlDbType.NVarChar);
+                                        sqlCommand.Parameters["@date"].Value = HttpUtility.UrlDecode(tmpEmail);
 
                                         tmpList.Remove(s);
                                         tmpList.Remove(tmpEmail);
