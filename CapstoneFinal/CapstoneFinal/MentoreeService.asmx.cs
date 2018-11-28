@@ -502,19 +502,22 @@ namespace CapstoneFinal
                                             sqlCommand.Parameters.Add("@date", System.Data.SqlDbType.NVarChar);
                                             sqlCommand.Parameters["@date"].Value = HttpUtility.UrlDecode(date);
 
+                                           
+
                                             SqlCommand sqlCommand2 = new SqlCommand(sqlSelect2, sqlConnection);
 
-                                            sqlCommand.Parameters.Add("@id", System.Data.SqlDbType.NVarChar);
-                                            sqlCommand.Parameters["@id"].Value = HttpUtility.UrlDecode(fixID);
-                                            sqlCommand.Parameters.Add("@date", System.Data.SqlDbType.NVarChar);
-                                            sqlCommand.Parameters["@date"].Value = HttpUtility.UrlDecode(s);
+                                            sqlCommand2.Parameters.Add("@id", System.Data.SqlDbType.NVarChar);
+                                            sqlCommand2.Parameters["@id"].Value = HttpUtility.UrlDecode(fixID);
+                                            sqlCommand2.Parameters.Add("@email", System.Data.SqlDbType.NVarChar);
+                                            sqlCommand2.Parameters["@email"].Value = HttpUtility.UrlDecode(s);
 
+                                           
                                             SqlCommand sqlCommand3 = new SqlCommand(sqlSelect3, sqlConnection);
 
-                                            sqlCommand.Parameters.Add("@id", System.Data.SqlDbType.NVarChar);
-                                            sqlCommand.Parameters["@id"].Value = HttpUtility.UrlDecode(fixID);
-                                            sqlCommand.Parameters.Add("@date", System.Data.SqlDbType.NVarChar);
-                                            sqlCommand.Parameters["@date"].Value = HttpUtility.UrlDecode(tmpEmail);
+                                            sqlCommand3.Parameters.Add("@id", System.Data.SqlDbType.NVarChar);
+                                            sqlCommand3.Parameters["@id"].Value = HttpUtility.UrlDecode(fixID);
+                                            sqlCommand3.Parameters.Add("@email", System.Data.SqlDbType.NVarChar);
+                                            sqlCommand3.Parameters["@email"].Value = HttpUtility.UrlDecode(tmpEmail);
 
                                             sqlConnection.Open();
                                             //we're using a try/catch so that if the query errors out we can handle it gracefully
@@ -522,6 +525,8 @@ namespace CapstoneFinal
                                             try
                                             {
                                                 sqlCommand.ExecuteNonQuery();
+                                                sqlCommand2.ExecuteNonQuery();
+                                                sqlCommand3.ExecuteNonQuery();
 
                                                 success = true;
                                             }

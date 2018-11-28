@@ -241,7 +241,7 @@
 
                 cardButton.append("View Profile");
 
-                cardName.append(haveMet);
+                
                 cardBody.append(cardName);
                 cardBody.append(cardButton);
 
