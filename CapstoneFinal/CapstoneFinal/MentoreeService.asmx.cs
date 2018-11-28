@@ -332,6 +332,8 @@ namespace CapstoneFinal
 
                         while (success == false)
                         {
+                            int totalLoops = 0;
+                            totalLoops++;
                             bool nameMatch = false;
 
                             Random random = new Random();
@@ -435,6 +437,10 @@ namespace CapstoneFinal
                             }
 
                             if (tmpList.Count == 1)
+                            {
+                                success = true;
+                            }
+                            if (totalLoops > 50)
                             {
                                 success = true;
                             }
