@@ -273,7 +273,7 @@ namespace CapstoneFinal
         }
 
         [WebMethod(EnableSession = true)]
-        public string CreateRandomConnection()
+        public bool CreateRandomConnection()
         {
             List<Info> lst = new List<Info>();
 
@@ -285,7 +285,7 @@ namespace CapstoneFinal
             //we want this, because if the account gets created we will automatically
             //log them on by storing their id in the session.  That's just a design choice.  You could
             //decide that after they create an account they still have to log on seperately.  Whatevs.
-            try
+            //try
             {
 
                 SqlConnection con = new SqlConnection();
@@ -325,127 +325,179 @@ namespace CapstoneFinal
 
                     string[] listArray = new string[tmpList.Count()];
 
+                    int tmpNum = 0;
+
                     foreach (string s in tmpList)
                     {
-                        
+                       
+
+                        listArray[tmpNum] = s;
+
+                        tmpNum++;
+                    }
+
+
+                    foreach (string s in tmpList)
+                    {
+                        bool doesExist = false;
                         bool success = false;
 
-                        while (success == false)
+                        for (int i = 0; i < listArray.Length; i++)
+                        {
+                                if(s == listArray[i])
+                            {
+                                doesExist = true;
+                            }
+                        }
+
+                        if(doesExist != false)
                         {
                             int totalLoops = 0;
-                            totalLoops++;
-                            bool nameMatch = false;
-
-                            Random random = new Random();
-
-                            int index = random.Next(tmpList.Count);
-
-                            string tmpEmail = tmpList[index];
-
-                            if (tmpEmail == s)
+                            while (success == false)
                             {
+                               
+                                totalLoops++;
+                                bool nameMatch = false;
 
-                            }
-                            else
-                            {
-                                con = new SqlConnection();
-                                con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
-                                con.Open();
-                                cmd = new SqlCommand();
-                                cmd.CommandText = "Select * from profileTable where userEmail IN (select userEmail from bridge_meetings_Profile where meetingId IN (Select meetingID from meetings where meetingId IN (Select meetingId From bridge_meetings_Profile where userEmail = (select userEmail from profileTable where userEmail = (select userEmail from login where userEmail = '" + s + "'))))) And userEmail != (select userEmail from login where userEmail = '" + s + "' );";
-                                cmd.Connection = con;
-                                rd = cmd.ExecuteReader();
+                                Random random = new Random();
 
-                                if (rd.HasRows)
+                                int index = random.Next(tmpList.Count);
+
+                                string tmpEmail = tmpList[index];
+
+                                if (tmpEmail == s)
                                 {
-                                    while (rd.Read())
-                                    {
-                                        string email = rd[0].ToString().Trim() ?? "";
-
-                                        if (email == tmpEmail)
-                                        {
-                                            nameMatch = true;
-                                        }
-                                    }
-
-                                    if (nameMatch != true)
-                                    {
-                                        success = true;
-
-                                        string meetingID;
-                                        string fixID = "";
-
-                                        con = new SqlConnection();
-                                        con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
-                                        con.Open();
-                                        cmd = new SqlCommand();
-                                        cmd.CommandText = "Select MAX(meetingID) from meetings";
-                                        cmd.Connection = con;
-                                        rd = cmd.ExecuteReader();
-
-                                        if (rd.HasRows)
-                                        {
-                                            while (rd.Read())
-                                            {
-                                                meetingID = rd[0].ToString().Trim() ?? "";
-                                                fixID = "M" + (Convert.ToInt32(meetingID.Replace("M", "")) + 1).ToString().PadLeft(5, '0');
-                                            }
-                                        }
-
-                                        string date = DateTime.Today.AddMonths(2).ToString("yyyy-MM-dd");
-
-                                        string sqlSelect = "insert into meetings (meetingID, meetingDate) " + "values(@id, @date);";
-
-                                        string sqlSelect2 = "insert into bridge_Meetings_Profile (meetingID, userEmail)" + "values(@id, @email);";
-
-                                        string sqlSelect3 = "insert into bridge_Meetings_Profile (meetingID, userEmail)" + "values(@id, @email);";
-
-                                        string sqlConnectString = ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
-
-                                        SqlConnection sqlConnection = new SqlConnection(sqlConnectString);
-
-                                        SqlCommand sqlCommand = new SqlCommand(sqlSelect, sqlConnection);
-
-                                        sqlCommand.Parameters.Add("@id", System.Data.SqlDbType.NVarChar);
-                                        sqlCommand.Parameters["@id"].Value = HttpUtility.UrlDecode(fixID);
-                                        sqlCommand.Parameters.Add("@date", System.Data.SqlDbType.NVarChar);
-                                        sqlCommand.Parameters["@date"].Value = HttpUtility.UrlDecode(date);
-
-                                        SqlCommand sqlCommand2 = new SqlCommand(sqlSelect2, sqlConnection);
-
-                                        sqlCommand.Parameters.Add("@id", System.Data.SqlDbType.NVarChar);
-                                        sqlCommand.Parameters["@id"].Value = HttpUtility.UrlDecode(fixID);
-                                        sqlCommand.Parameters.Add("@date", System.Data.SqlDbType.NVarChar);
-                                        sqlCommand.Parameters["@date"].Value = HttpUtility.UrlDecode(s);
-
-                                        SqlCommand sqlCommand3 = new SqlCommand(sqlSelect3, sqlConnection);
-
-                                        sqlCommand.Parameters.Add("@id", System.Data.SqlDbType.NVarChar);
-                                        sqlCommand.Parameters["@id"].Value = HttpUtility.UrlDecode(fixID);
-                                        sqlCommand.Parameters.Add("@date", System.Data.SqlDbType.NVarChar);
-                                        sqlCommand.Parameters["@date"].Value = HttpUtility.UrlDecode(tmpEmail);
-
-                                        tmpList.Remove(s);
-                                        tmpList.Remove(tmpEmail);
-                                    }
 
                                 }
                                 else
                                 {
+                                    con = new SqlConnection();
+                                    con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
+                                    con.Open();
+                                    cmd = new SqlCommand();
+                                    cmd.CommandText = "Select * from profileTable where userEmail IN (select userEmail from bridge_meetings_Profile where meetingId IN (Select meetingID from meetings where meetingId IN (Select meetingId From bridge_meetings_Profile where userEmail = (select userEmail from profileTable where userEmail = (select userEmail from login where userEmail = '" + s + "'))))) And userEmail != (select userEmail from login where userEmail = '" + s + "' );";
+                                    cmd.Connection = con;
+                                    rd = cmd.ExecuteReader();
 
+                                    if (rd.HasRows)
+                                    {
+                                        while (rd.Read())
+                                        {
+                                            string email = rd[0].ToString().Trim() ?? "";
+
+                                            if (email == tmpEmail)
+                                            {
+                                                nameMatch = true;
+                                            }
+                                        }
+
+                                        if (nameMatch != true)
+                                        {
+                                            success = true;
+
+                                            string meetingID;
+                                            string fixID = "";
+
+                                            con = new SqlConnection();
+                                            con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
+                                            con.Open();
+                                            cmd = new SqlCommand();
+                                            cmd.CommandText = "Select MAX(meetingID) from meetings";
+                                            cmd.Connection = con;
+                                            rd = cmd.ExecuteReader();
+
+                                            if (rd.HasRows)
+                                            {
+                                                while (rd.Read())
+                                                {
+                                                    meetingID = rd[0].ToString().Trim() ?? "";
+                                                    fixID = "M" + (Convert.ToInt32(meetingID.Replace("M", "")) + 1).ToString().PadLeft(5, '0');
+                                                }
+                                            }
+
+                                            string date = DateTime.Today.AddMonths(2).ToString("yyyy-MM-dd");
+
+                                            string sqlSelect = "insert into meetings (meetingID, meetingDate) " + "values(@id, @date);";
+
+                                            string sqlSelect2 = "insert into bridge_Meetings_Profile (meetingID, userEmail)" + "values(@id, @email);";
+
+                                            string sqlSelect3 = "insert into bridge_Meetings_Profile (meetingID, userEmail)" + "values(@id, @email);";
+
+                                            string sqlConnectString = ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+
+                                            SqlConnection sqlConnection = new SqlConnection(sqlConnectString);
+
+                                            SqlCommand sqlCommand = new SqlCommand(sqlSelect, sqlConnection);
+
+                                            sqlCommand.Parameters.Add("@id", System.Data.SqlDbType.NVarChar);
+                                            sqlCommand.Parameters["@id"].Value = HttpUtility.UrlDecode(fixID);
+                                            sqlCommand.Parameters.Add("@date", System.Data.SqlDbType.NVarChar);
+                                            sqlCommand.Parameters["@date"].Value = HttpUtility.UrlDecode(date);
+
+                                            SqlCommand sqlCommand2 = new SqlCommand(sqlSelect2, sqlConnection);
+
+                                            sqlCommand.Parameters.Add("@id", System.Data.SqlDbType.NVarChar);
+                                            sqlCommand.Parameters["@id"].Value = HttpUtility.UrlDecode(fixID);
+                                            sqlCommand.Parameters.Add("@date", System.Data.SqlDbType.NVarChar);
+                                            sqlCommand.Parameters["@date"].Value = HttpUtility.UrlDecode(s);
+
+                                            SqlCommand sqlCommand3 = new SqlCommand(sqlSelect3, sqlConnection);
+
+                                            sqlCommand.Parameters.Add("@id", System.Data.SqlDbType.NVarChar);
+                                            sqlCommand.Parameters["@id"].Value = HttpUtility.UrlDecode(fixID);
+                                            sqlCommand.Parameters.Add("@date", System.Data.SqlDbType.NVarChar);
+                                            sqlCommand.Parameters["@date"].Value = HttpUtility.UrlDecode(tmpEmail);
+
+                                            sqlConnection.Open();
+                                            //we're using a try/catch so that if the query errors out we can handle it gracefully
+                                            //by closing the connection and moving on
+                                            try
+                                            {
+                                                sqlCommand.ExecuteNonQuery();
+
+                                                success = true;
+                                            }
+                                            catch
+                                            {
+
+                                                success = false;
+                                            }
+
+
+                                            sqlConnection.Close();
+
+
+                                            for (int i = 0; i < listArray.Length; i++)
+                                            {
+                                                if (s == listArray[i])
+                                                {
+                                                    listArray[i] = "";
+                                                }
+                                                if (tmpEmail == listArray[i])
+                                                {
+                                                    listArray[i] = "";
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                    else
+                                    {
+
+                                    }
                                 }
-                            }
 
-                            if (tmpList.Count == 1)
-                            {
-                                success = true;
-                            }
-                            if (totalLoops > 50)
-                            {
-                                success = true;
-                            }
+                                
+                                if (totalLoops > 20)
+                                {
+                                    success = true;
+                                }
 
+                            }
                         }
+                        
+
+                        
                    
 
                      
@@ -466,15 +518,15 @@ namespace CapstoneFinal
                 }
                 else
                 {
-                    return null;
+                    return true;
                 }
             }
-            catch
+           // catch
             {
-                return null;
+                return true;
             }
 
-            return null;
+            return true;
         }
 
 
