@@ -501,7 +501,7 @@ namespace CapstoneFinal
                 con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "Select * from profileTable where userEmail IN (select userEmail from bridge_meetings_Profile where meetingId IN (Select meetingID from meetings where meetingId IN (Select meetingId From bridge_meetings_Profile where userEmail = (select userEmail from profileTable where userEmail = (select userEmail from login where userEmail = '" + searchID + "'))))) And userEmail != (select userEmail from login where userEmail = '" + searchID + "' );";
+                cmd.CommandText = "Select * from profileTable where userEmail IN (select userEmail from bridge_meetings_Profile where meetingId IN (Select meetingID from meetings where meetingId IN (Select meetingId From bridge_meetings_Profile where userEmail = (select userEmail from profileTable where userEmail = (select userEmail from login where userEmail = '" + searchID + "'))))) And userEmail != (select userEmail from login where userEmail = '" + searchID + "' ) And userEmail IN (select userEmail from bridge_meetings_Profile where meetingId IN (Select meetingID from meetings where haveMet is NULL));";
                 cmd.Connection = con;
                 SqlDataReader rd = cmd.ExecuteReader();
 
