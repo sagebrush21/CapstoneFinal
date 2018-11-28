@@ -233,11 +233,6 @@
                 var cardName = document.createElement('h5');
                 cardName.setAttribute('class', 'card-title');
 
-                var haveMet = document.createElement('img');
-                haveMet.setAttribute('src', './images/redX.png');
-                haveMet.setAttribute('width', '25px');
-                haveMet.setAttribute('height', '25px');
-
                 cardName.append(obj[i].FirstName + " " + obj[i].LastName);
 
                 var cardButton = document.createElement('button');
@@ -307,7 +302,7 @@
             });
         }
 
-        function createRandomConnections() {
+        async function createRandomConnections() {
             console.log('test');
             //the url of the webservice we will be talking to
             var webMethod = "./MentoreeService.asmx/CreateRandomConnection";

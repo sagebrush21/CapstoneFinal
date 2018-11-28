@@ -13,6 +13,87 @@
 	<link type="text/css" rel="stylesheet" href="./css/contactPageStyle.css"/>
         <link rel="stylesheet" href="./css/bootstrap.css"/>
     <link rel="stylesheet" href="./css/webCSS.css"/>
+
+    <script type="text/javascript">
+     function LogOn() {
+            //the url of the webservice we will be talking to
+             var webMethod = "./MentoreeService.asmx/LoadMeetingConnections";
+
+            //jQuery ajax method
+            $.ajax({
+                //post is more secure than get, and allows
+                //us to send big data if we want.  really just
+                //depends on the way the service you're talking to is set up, though
+                type: "POST",
+                //the url is set to the string we created above
+                url: webMethod,
+                //these next two key/value pairs say we intend to talk in JSON format
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                //jQuery sends the data and asynchronously waits for a response.  when it
+                //gets a response, it calls the function mapped to the success key here
+                success: function (msg) {
+                    //the server response is in the msg object passed in to the function here
+                    
+                    if (msg.d != null) {
+                        createDom(msg);
+                    }
+                    else {
+                        //server replied false, so let the user know
+                        //the logon failed
+                        window.location.href = "index.aspx";
+                    }
+                },
+                error: function (e) {
+                    //if something goes wrong in the mechanics of delivering the
+                    //message to the server or the server processing that message,
+                    alert("boo...");
+                }
+            });
+        }
+
+
+        function createDom(msg) {
+            var obj = JSON.parse(msg.d);
+            console.log(obj);
+
+            var contact = document.createElement('div');
+            var contactLeft = document.createElement('div');
+            var image = document.createElement('div');
+            var contactRight = document.createElement('div');
+            var name = document.createElement('h4');
+            var job = document.createElement('div');
+            var location = document.createElement('div');
+            var detail = document.createElement('div');
+            var img = document.createElement('img');
+
+            contact.setAttribute('class', 'contact');
+            contactLeft.setAttribute('class', 'contactLeft');
+            image.setAttribute('class', 'profileImage');
+            contactRight.setAttribute('class', 'contactRight');
+            name.setAttribute('class', 'name');
+            job.setAttribute('class', 'jobTitle');
+            location.setAttribute('class', 'location');
+            detail.setAttribute('class', 'subDetail');
+
+            img.setAttribute('src', '.\images\profilePic.jpeg');
+            img.setAttribute('alt', 'Profile Image');
+
+            image.append(img);
+            contactLeft.append(image);
+
+            contactRight.append(name);
+            contactRight.append(job);
+            contactRight.append(location);
+            contactRight.append(detail);
+
+            contact.append(contactLeft);
+            contact.append(contactRight);
+
+            $("#addData").append(contact);
+        }
+     </script>
+
 </head>
 <body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bgark">
@@ -77,7 +158,9 @@
 	
 	<h2 class="title">All Contacts: </h2>	
 	<div class="contactsContainer" id="allContacts">
+        <div id="addData">
 
+        </div>
 		<div class="contact">
 			<div class="contactLeft">
 				<div class="profileImage">
