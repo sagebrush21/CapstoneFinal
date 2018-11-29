@@ -205,6 +205,50 @@ namespace CapstoneFinal
         }
 
         [WebMethod(EnableSession = true)]
+        public string LoadUserCode()
+        {
+
+
+
+            List<UserCode> lst = new List<UserCode>();
+            //the only thing fancy about this query is SELECT SCOPE_IDENTITY() at the end.  All that
+            //does is tell sql server to return the primary key of the last inserted row.
+            //we want this, because if the account gets created we will automatically
+            //log them on by storing their id in the session.  That's just a design choice.  You could
+            //decide that after they create an account they still have to log on seperately.  Whatevs.
+            try
+            {
+                string searchID = Session["id"].ToString();
+
+                
+                searchID = searchID.PadLeft(5, '0');
+
+                lst.Add(new UserCode(searchID));
+
+                    string str = new JavaScriptSerializer().Serialize(lst);
+                    return str;
+                    //while (rd.Read())
+                    //{
+                    //    //object binaryData = rd[0];
+                    //    //byte[] bytes = (byte[])binaryData;
+                    //    //string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
+
+
+                    //    // mainImage.ImageUrl = "data:image/jpg;base64," + base64String;
+
+                    //}
+                
+                
+            }
+            catch
+            {
+                return null;
+            }
+
+
+        }
+
+        [WebMethod(EnableSession = true)]
         public string LoadConnections()
         {
             List<Info> lst = new List<Info>();

@@ -96,6 +96,46 @@
             });
         }
 
+        function userCode() {
+            console.log("test");
+            //the url of the webservice we will be talking to
+            var webMethod = "./MentoreeService.asmx/LoadUserCode";
+            //jQuery ajax method
+            $.ajax({
+                //post is more secure than get, and allows
+                //us to send big data if we want.  really just
+                //depends on the way the service you're talking to is set up, though
+                type: "POST",
+                //the url is set to the string we created above
+                url: webMethod,
+                //these next two key/value pairs say we intend to talk in JSON format
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                //jQuery sends the data and asynchronously waits for a response.  when it
+                //gets a response, it calls the function mapped to the success key here
+                success: function (msg) {
+                    //the server response is in the msg object passed in to the function here
+
+                    if (msg.d != null) {
+                        console.log(msg);
+                        userCodeDisplay(msg);
+                        
+                    }
+                    else {
+                        //server replied false, so let the user know
+                        //the logon failed
+                        
+                    }
+                },
+                error: function (e) {
+                    //if something goes wrong in the mechanics of delivering the
+                    //message to the server or the server processing that message,
+                    alert("boo...");
+                }
+            });
+        }
+
+
         function Connection() {
             //the url of the webservice we will be talking to
             var webMethod = "./MentoreeService.asmx/LoadConnections";
@@ -116,7 +156,6 @@
                 success: function (msg) {
                     //the server response is in the msg object passed in to the function here
                     if (msg.d != null) {
-                        console.log(msg);
                         createConnections(msg);
                     }
                     else {
@@ -254,10 +293,21 @@
 
             $("#times").append(times);
 
+            userCode();
             Connection();
         }
 
+        function userCodeDisplay(msg) {
+            var obj = JSON.parse(msg.d);
+            console.log(obj);
 
+           
+            var code = document.createElement('h6');
+            code.append(obj[0].Code);
+
+            $('#rightHeader').append(code);
+        }
+        
 
         function createConnections(msg) {
             var obj = JSON.parse(msg.d);
