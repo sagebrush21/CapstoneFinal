@@ -271,10 +271,6 @@
                 var cardName = document.createElement('h5');
                 cardName.setAttribute('class', 'card-title');
 
-                var haveMet = document.createElement('img');
-                haveMet.setAttribute('src', './images/redX.png');
-                haveMet.setAttribute('width', '25px');
-                haveMet.setAttribute('height', '25px');
 
                 cardName.append(obj[i].FirstName + " " + obj[i].LastName);
 
@@ -284,7 +280,6 @@
 
                 cardButton.append("View Profile");
 
-                cardName.append(haveMet);
                 cardBody.append(cardName);
                 cardBody.append(cardButton);
 
@@ -386,11 +381,7 @@
 					<!--<p>M-F at 12-2pm or Weekends from 3-6pm.</p>-->
 				</div>
 
-                <div id="code" class="container">
-                    <h2>Enter user code here</h2>
-                        <input type="text" name="code"/>
-                        <button class="btn btn-primary">Submit</button>
-                </div>
+               
 			</div>
             <div id="profileDisplay" class="container">
                 <h2>Connections: </h2>

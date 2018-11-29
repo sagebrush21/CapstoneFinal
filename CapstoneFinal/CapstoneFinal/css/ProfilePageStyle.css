@@ -1,8 +1,6 @@
-body
-{
-	margin: auto;
-	background-image: url("../images/whitediamond.png");
-
+body {
+    margin: auto;
+    background-color: rgb(238,243,247);
 }
 
 header

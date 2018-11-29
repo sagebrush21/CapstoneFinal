@@ -1,6 +1,5 @@
-body
-{
-    background-image: url("../images/polaroid.png");
+body {
+    background-color: rgb(238,243,247);
     font-family: Arial;
 }
 

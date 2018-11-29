@@ -91,7 +91,7 @@
         }
     </script>
 </head>
-<body onload="LogOff()" style="background: url('./images/circleBackground2.jpg') no-repeat; background-size: cover">
+<body onload="LogOff()" style="background: url('./images/circleBackground2.jpg') no-repeat; background-size: cover;">
     <form id="form1" runat="server">
         <div>
             <!-- NAVBAR -->

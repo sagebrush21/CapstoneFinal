@@ -219,7 +219,7 @@
                 
 
                 var card = document.createElement('div');
-                card.setAttribute("class", "card mr-5");
+                card.setAttribute("class", "card mr-5 mt-5 text-center");
                 card.setAttribute("style", "width: 18rem");
 
                 var img = document.createElement('img');
@@ -241,9 +241,34 @@
 
                 cardButton.append("View Profile");
 
-                
+                var input = document.createElement('div');
+                input.setAttribute('class', 'input-group mt-2 mb-2');
+
+                var inputText = document.createElement('input');
+                inputText.setAttribute('type', 'text');
+                inputText.setAttribute('class', 'form-control');
+                inputText.setAttribute('placeholder', 'Meeting ID');
+
+                var inputButtonGroup = document.createElement('div');
+                inputButtonGroup.setAttribute('class', 'input-group-append');
+
+                var inputButton = document.createElement('button');
+                inputButton.setAttribute('class', 'btn btn-primary');
+                inputButton.setAttribute('type', 'button');
+
+                inputButton.append("Submit Code");
+
+                inputButtonGroup.append(inputButton);
+
+                input.append(inputText);
+                input.append(inputButtonGroup);
+
+
+
                 cardBody.append(cardName);
+                cardBody.append(input);
                 cardBody.append(cardButton);
+                
 
                 card.append(img);
                 card.append(cardBody);

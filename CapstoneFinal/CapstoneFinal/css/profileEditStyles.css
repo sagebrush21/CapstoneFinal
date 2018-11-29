@@ -30,8 +30,7 @@
 
 body {
     margin: auto;
-    background-image: url("../images/whitediamond.png");
-   
+    background-color: rgb(238,243,247);
     background-size: cover;
 }
 
