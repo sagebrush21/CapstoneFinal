@@ -16,6 +16,18 @@
         input {
             border-radius: 5px;
         }
+
+        #rightHeader input {
+            float: right;
+        }
+
+        .infoText{
+            float: left;
+        }
+
+        .clearAfter{
+            clear: right;
+        }
     </style>
       <script type="text/javascript"> 
           function LoadPage() {
@@ -179,26 +191,26 @@
 
     <!-- Main dom -->
     <div class="container pt-5">
-        <div id="profileImage">
+        <div id="profileImage" class="mr-5">
 
-		<img src=".\images\sealImage.jpg" alt="profileImage" width ="300" height="300">
+		<img src=".\images\sealImage.jpg" alt="profileImage" width ="300" height="300" />
 
-		<button type="button">Edit Picture</button>
+		
 	    </div>
-	
+	   
 	    <div id="rightHeader">
 		    <form id="basicInfo">
 			    <fieldset>
 				    <legend>Basic Information:</legend>
 
-			    <div> First name: <input id="firstName" type="text" name="firstName" /> </div>
-			    <div> Last name: <input id="lastName" type="text" name="lastName" /> </div>
-			    <div> Current Position: <input id="position" type="text" name="position" /> </div>
-			    <div> Certification: <input id="cert" type="text" name="cert" /> </div>
-			    <div> City: <input id="city" type="text" name="city" /> </div>
-			    <div> State: <input id="state" type="text" name="state" /> </div>
-			    <div> Country: <input id="country" type="text" name="country" /> </div>
-
+			    <div class="clearAfter"> <span class="infoText">First name: </span> <input id="firstName" type="text" name="firstName" /> </div>
+			    <div class="clearAfter"> <span class="infoText">Last name: </span> <input id="lastName" type="text" name="lastName" /> </div>
+			    <div class="clearAfter"> <span class="infoText">Current Position: </span> <input id="position" type="text" name="position" /> </div>
+			    <div class="clearAfter"> <span class="infoText">Certification: </span> <input id="cert" type="text" name="cert" /> </div>
+			    <div class="clearAfter"> <span class="infoText">City: </span> <input id="city" type="text" name="city" /> </div>
+			    <div class="clearAfter"> <span class="infoText">State: </span> <input id="state" type="text" name="state" /> </div>
+			    <div class="clearAfter"> <span class="infoText">Country: </span> <input id="country" type="text" name="country" /> </div>
+                <div class="clearAfter"> <span class="infoText">Edit Image: </span> <input type="file" name="pic" id="image" accept="image/*" /> </div>
 			    </fieldset>
 		    </form>
 	    </div>
