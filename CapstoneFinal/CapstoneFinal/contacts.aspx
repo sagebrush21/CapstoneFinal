@@ -51,6 +51,48 @@
                 }
             });
         }
+        function loadConnection(email) {
+            console.log('test');
+            //the url of the webservice we will be talking to
+            var webMethod = "./MentoreeService.asmx/NewProfile";
+
+            var parameters = "{\"email\":\"" + encodeURI(email) + "\"}";
+
+            //jQuery ajax method
+            $.ajax({
+                //post is more secure than get, and allows
+                //us to send big data if we want.  really just
+                //depends on the way the service you're talking to is set up, though
+                type: "POST",
+                //the url is set to the string we created above
+                url: webMethod,
+                //same with the data
+                data: parameters,
+                //these next two key/value pairs say we intend to talk in JSON format
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                //jQuery sends the data and asynchronously waits for a response.  when it
+                //gets a response, it calls the function mapped to the success key here
+                success: function (msg) {
+                    //the server response is in the msg object passed in to the function here
+
+                    if (msg.d) {
+
+                        window.location.href = "connectionProfile.aspx";
+                    }
+                    else {
+                        //server replied false, so let the user know
+                        //the logon failed
+                       
+                    }
+                },
+                error: function (e) {
+                    //if something goes wrong in the mechanics of delivering the
+                    //message to the server or the server processing that message,
+                    
+                }
+            });
+        }
 
 
         function createDom(msg) {
@@ -80,6 +122,7 @@
 
                 img.setAttribute('src', './images/profilePic4.jpg');
                 img.setAttribute('alt', 'Profile Image');
+                img.setAttribute('onclick', 'loadConnection("'+obj[i].Email+'")')
 
                 name.append(obj[i].FirstName + " " + obj[i].LastName);
                 job.append(obj[i].CurrentPosition);

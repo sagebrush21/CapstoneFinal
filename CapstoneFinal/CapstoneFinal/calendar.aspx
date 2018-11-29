@@ -46,7 +46,7 @@
 		
 		<div id="event-container">
 			
-			<h3>Today: 11/29/2018</h3>
+			<h3>Today: 11/29git/2018</h3>
 			<div class="event">				
 				<p>--none------------</p>
 			</div>
