@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="./css/webCSS.css"/>
 
     <script type="text/javascript">
-     function LogOn() {
+        function LoadPage() {
             //the url of the webservice we will be talking to
              var webMethod = "./MentoreeService.asmx/LoadMeetingConnections";
 
@@ -41,7 +41,7 @@
                     else {
                         //server replied false, so let the user know
                         //the logon failed
-                        window.location.href = "index.aspx";
+                        
                     }
                 },
                 error: function (e) {
@@ -57,45 +57,52 @@
             var obj = JSON.parse(msg.d);
             console.log(obj);
 
-            var contact = document.createElement('div');
-            var contactLeft = document.createElement('div');
-            var image = document.createElement('div');
-            var contactRight = document.createElement('div');
-            var name = document.createElement('h4');
-            var job = document.createElement('div');
-            var location = document.createElement('div');
-            var detail = document.createElement('div');
-            var img = document.createElement('img');
+            for (i = 0; i < obj.length; i++) {
 
-            contact.setAttribute('class', 'contact');
-            contactLeft.setAttribute('class', 'contactLeft');
-            image.setAttribute('class', 'profileImage');
-            contactRight.setAttribute('class', 'contactRight');
-            name.setAttribute('class', 'name');
-            job.setAttribute('class', 'jobTitle');
-            location.setAttribute('class', 'location');
-            detail.setAttribute('class', 'subDetail');
+                var contact = document.createElement('div');
+                var contactLeft = document.createElement('div');
+                var image = document.createElement('div');
+                var contactRight = document.createElement('div');
+                var name = document.createElement('h4');
+                var job = document.createElement('div');
+                var location = document.createElement('div');
+                var detail = document.createElement('div');
+                var img = document.createElement('img');
 
-            img.setAttribute('src', '.\images\profilePic.jpeg');
-            img.setAttribute('alt', 'Profile Image');
+                contact.setAttribute('class', 'contact');
+                contactLeft.setAttribute('class', 'contactLeft');
+                image.setAttribute('class', 'profileImage');
+                contactRight.setAttribute('class', 'contactRight');
+                name.setAttribute('class', 'name');
+                job.setAttribute('class', 'jobTitle');
+                location.setAttribute('class', 'location');
+                detail.setAttribute('class', 'subDetail');
 
-            image.append(img);
-            contactLeft.append(image);
+                img.setAttribute('src', './images/profilePic4.jpg');
+                img.setAttribute('alt', 'Profile Image');
 
-            contactRight.append(name);
-            contactRight.append(job);
-            contactRight.append(location);
-            contactRight.append(detail);
+                name.append(obj[i].FirstName + " " + obj[i].LastName);
+                job.append(obj[i].CurrentPosition);
+                location.append(obj[i].UserCity);
 
-            contact.append(contactLeft);
-            contact.append(contactRight);
+                image.append(img);
+                contactLeft.append(image);
 
-            $("#addData").append(contact);
+                contactRight.append(name);
+                contactRight.append(job);
+                contactRight.append(location);
+                contactRight.append(detail);
+
+                contact.append(contactLeft);
+                contact.append(contactRight);
+
+                $("#addData").append(contact);
+            }
         }
      </script>
 
 </head>
-<body>
+<body onload="LoadPage()">
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bgark">
     <a class="navbar-brand" href="mainProfile.aspx"><img class="brand-image" src="./images/manatee-transparent-background.png" height="30" width="30"/>Mentoree</a>
     
@@ -158,9 +165,7 @@
 	
 	<h2 class="title">All Contacts: </h2>	
 	<div class="contactsContainer" id="allContacts">
-        <div id="addData">
-
-        </div>
+        
 		<div class="contact">
 			<div class="contactLeft">
 				<div class="profileImage">
@@ -174,6 +179,10 @@
 				<p class="subDetail">Last meetup: 11/10/2018</p>				
 			</div>
 		</div>
+
+        <div id="addData">
+
+        </div>
 
 		<div class="contact">
 			<div class="contactLeft">

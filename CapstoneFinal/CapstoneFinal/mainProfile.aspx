@@ -133,7 +133,57 @@
             });
         }
 
+        function TestCode(code, tmpEmail) {
+            //the url of the webservice we will be talking to
+            var webMethod = "./MentoreeService.asmx/CheckMeetup";
+
+            var parameters = "{\"code\":\"" + encodeURI(code) + "\",\"email\":\"" + encodeURI(tmpEmail)+ "\"}";
+
+            //jQuery ajax method
+            $.ajax({
+                //post is more secure than get, and allows
+                //us to send big data if we want.  really just
+                //depends on the way the service you're talking to is set up, though
+                type: "POST",
+                //the url is set to the string we created above
+                url: webMethod,
+                //same with the data
+                data: parameters,
+                //these next two key/value pairs say we intend to talk in JSON format
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                //jQuery sends the data and asynchronously waits for a response.  when it
+                //gets a response, it calls the function mapped to the success key here
+                success: function (msg) {
+                    //the server response is in the msg object passed in to the function here
+
+                    if (msg.d) {
+
+                        window.location.href = "mainProfile.aspx";
+                    }
+                    else {
+                        //server replied false, so let the user know
+                        //the logon failed
+                        alert("Please enter a correct code");
+                    }
+                },
+                error: function (e) {
+                    //if something goes wrong in the mechanics of delivering the
+                    //message to the server or the server processing that message,
+                    
+                }
+            });
+        }
+
         function createDom(msg) {
+
+            $(document).keypress(
+                function (event) {
+                    if (event.which == '13') {
+                        event.preventDefault();
+                    }
+                });
+
             var obj = JSON.parse(msg.d);
             console.log(obj);
 
@@ -247,6 +297,7 @@
                 var inputText = document.createElement('input');
                 inputText.setAttribute('type', 'text');
                 inputText.setAttribute('class', 'form-control');
+                inputText.setAttribute('id','inputId'+i)
                 inputText.setAttribute('placeholder', 'Meeting ID');
 
                 var inputButtonGroup = document.createElement('div');
@@ -255,6 +306,7 @@
                 var inputButton = document.createElement('button');
                 inputButton.setAttribute('class', 'btn btn-primary');
                 inputButton.setAttribute('type', 'button');
+                inputButton.setAttribute('onclick', 'TestCode($("#inputId'+i+'").val(),"'+ obj[i].Email+'");');
 
                 inputButton.append("Submit Code");
 
@@ -367,6 +419,8 @@
                 }
             });
         }
+
+        
 
     </script>
 </head>

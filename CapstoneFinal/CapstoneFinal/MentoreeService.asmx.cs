@@ -221,7 +221,7 @@ namespace CapstoneFinal
                 con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "Select * from profileTable where userEmail IN (select userEmail from bridge_meetings_Profile where meetingId IN (Select meetingID from meetings where meetingId IN (Select meetingId From bridge_meetings_Profile where userEmail = (select userEmail from profileTable where userEmail = (select userEmail from login where userId = " + searchID + "))))) And userEmail != (select userEmail from login where userId = " + searchID + " );";
+                cmd.CommandText = "Select * from profileTable where userEmail IN (select userEmail from bridge_meetings_Profile where meetingId IN (Select meetingID from meetings where meetingId IN (Select meetingId From bridge_meetings_Profile where userEmail = (select userEmail from profileTable where userEmail = (select userEmail from login where userID = '" + searchID + "'))))) And userEmail != (select userEmail from login where userID = '" + searchID + "' ) And userEmail IN (select userEmail from bridge_meetings_Profile where meetingId IN (Select meetingID from meetings where haveMet is NULL));";
                 cmd.Connection = con;
                 SqlDataReader rd = cmd.ExecuteReader();
 
@@ -276,11 +276,7 @@ namespace CapstoneFinal
         public string LoadMeetingConnections()
         {
             List<Info> lst = new List<Info>();
-            //the only thing fancy about this query is SELECT SCOPE_IDENTITY() at the end.  All that
-            //does is tell sql server to return the primary key of the last inserted row.
-            //we want this, because if the account gets created we will automatically
-            //log them on by storing their id in the session.  That's just a design choice.  You could
-            //decide that after they create an account they still have to log on seperately.  Whatevs.
+         
             try
             {
                 string searchID = Session["id"].ToString();
@@ -289,7 +285,7 @@ namespace CapstoneFinal
                 con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "Select * from profileTable where userEmail IN (select userEmail from bridge_meetings_Profile where meetingId IN (Select meetingID from meetings where meetingId IN (Select meetingId From bridge_meetings_Profile where userEmail = (select userEmail from profileTable where userEmail = (select userEmail from login where userEmail = '" + searchID + "'))))) And userEmail != (select userEmail from login where userEmail = '" + searchID + "' ) And userEmail IN (select userEmail from bridge_meetings_Profile where meetingId IN (Select meetingID from meetings where haveMet = 1));";
+                cmd.CommandText = "Select * from profileTable where userEmail != (select userEmail from login where userID = " + searchID + ") And userEmail NOT IN (select userEmail from bridge_meetings_Profile where meetingId IN (Select meetingID from meetings where haveMet IS NULL) And meetingId In (Select meetingId from meetings where meetingId In (Select meetingId from bridge_meetings_Profile where userEmail IN (Select userEmail from profileTable where userEmail In (Select userEmail from login where userId = " + searchID + "))))); ";
                 cmd.Connection = con;
                 SqlDataReader rd = cmd.ExecuteReader();
 
@@ -815,7 +811,7 @@ namespace CapstoneFinal
         }
 
         [WebMethod(EnableSession = true)]
-        public bool CheckMeetup()
+        public bool CheckMeetup(string code, string email)
         {
 
             bool success = false;
@@ -832,7 +828,7 @@ namespace CapstoneFinal
                 con.ConnectionString = ConfigurationManager.ConnectionStrings["myDB"].ToString();
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "Select haveMet from meetings where meetingId IN (select meetingId from bridge_meetings_Profile where userEmail IN (select userEmail from profileTable where userEmail In (select userEmail from login where userId = " + searchID + "))) And meetingId IN (select meetingId from bridge_meetings_Profile where userEmail = '" + 1 + "');";
+                cmd.CommandText = "Select userEmail from login where userId = " + code + ";";
                 cmd.Connection = con;
                 SqlDataReader rd = cmd.ExecuteReader();
 
@@ -844,27 +840,54 @@ namespace CapstoneFinal
                     {
                         try
                         {
-                            int num = Convert.ToInt32(rd[0]);
-                            if (num == 1)
+                            string tmpEmail = rd[0].ToString();
+
+                            if (tmpEmail == email)
                             {
-                                success = true;
+                                string sqlConnectString = ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+
+                                string sqlSelect = "UPDATE meetings Set haveMet = 1 where meetingID IN (select meetingId from bridge_meetings_Profile where userEmail = '"+ tmpEmail + "');";
+
+                                SqlConnection sqlConnection = new SqlConnection(sqlConnectString);
+
+                                SqlCommand sqlCommand = new SqlCommand(sqlSelect, sqlConnection);
+
+                                sqlConnection.Open();
+                                //we're using a try/catch so that if the query errors out we can handle it gracefully
+                                //by closing the connection and moving on
+                                try
+                                {
+                                    sqlCommand.ExecuteNonQuery();
+
+                                    success = true;
+                                }
+                                catch
+                                {
+
+                                    success = false;
+                                }
                             }
+                            else
+                            {
+                                return false;
+                            }
+
                         }
                         catch
                         {
-                            return success;
+                            return false;
                         }
 
                     }
                 }
                 else
                 {
-                    return success;
+                    return false;
                 }
             }
             catch
             {
-                return success;
+                return false;
             }
 
             return success;
