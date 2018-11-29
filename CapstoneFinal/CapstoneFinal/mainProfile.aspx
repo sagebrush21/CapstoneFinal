@@ -23,7 +23,7 @@
         }
        
         #rightHeader {
-            width: 85%;
+            width: 85%;j
             height: 250px;
             text-align: left;
             overflow: auto;

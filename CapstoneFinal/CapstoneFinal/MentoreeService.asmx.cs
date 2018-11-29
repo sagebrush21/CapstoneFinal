@@ -214,7 +214,7 @@ namespace CapstoneFinal
             //the only thing fancy about this query is SELECT SCOPE_IDENTITY() at the end.  All that
             //does is tell sql server to return the primary key of the last inserted row.
             //we want this, because if the account gets created we will automatically
-            //log them on by storing their id in the session.  That's just a design choice.  You could
+            //log them on by storing their id in the session.  Thhat's just a design choice.  You could
             //decide that after they create an account they still have to log on seperately.  Whatevs.
             try
             {
